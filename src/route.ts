@@ -13,7 +13,7 @@ export class Route {
   private endCoords: coords;
   private length: number;
   private avarageSlope: number;
-  //private usersIds;
+  private usersIds: number[];
   private activityType: string;
   private rating: number;
 
@@ -28,13 +28,14 @@ export class Route {
    * @param activityType Indicate if the route can be completed by bike or running.
    * @param rating Avarage route rating.
    */
-  constructor(id, name, startCoords, endCoords, length, avarageSlope, activityType, rating) {
+  constructor(id, name, startCoords, endCoords, length, avarageSlope, usersIds, activityType, rating) {
     this.id = id;
     this.name = name;
     this.startCoords = startCoords;
     this.endCoords = endCoords;
     this.length = length;
     this.avarageSlope = avarageSlope;
+    this.usersIds = usersIds;
     this.activityType = activityType;
     this.rating = rating;
   }
@@ -49,13 +50,13 @@ export class Route {
   //   return this.id;
   // }
 
-  // /**
-  //  * Get route name.
-  //  * @returns Route name.
-  //  */
-  // getName() {
-  //   return this.name;
-  // }
+  /**
+   * Get route name.
+   * @returns Route name.
+   */
+  getName() {
+    return this.name;
+  }
 
   // /**
   //  * Get start geolocation.

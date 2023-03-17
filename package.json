@@ -2,11 +2,11 @@
   "name": "practica-7",
   "version": "1.0.0",
   "description": "",
-  "main": "challengecollection.js",
+  "main": "functioning.js",
   "scripts": {
     "test": "nyc mocha",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls && rm -rf .nyc_output",
-    "start": "tsc-watch --onSuccess \"node dist/challengecollection.js\"",
+    "start": "tsc-watch --onSuccess \"node dist/functioning.js\"",
     "doc": "typedoc"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "typedoc": "^0.23.25"
   },
   "dependencies": {
+    "inquirer": "^6.5.2",
     "parseboolean": "^1.0.0",
     "prompt-sync": "^4.2.0"
   }
