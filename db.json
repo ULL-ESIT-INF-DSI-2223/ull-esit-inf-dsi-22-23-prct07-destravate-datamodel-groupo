@@ -1,0 +1,626 @@
+{
+  "challCol": {
+    "items": [
+      {
+        "id": 1,
+        "name": "Tres Cumbres",
+        "routes": [
+          {
+            "id": 101,
+            "name": "Teide",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 18,
+            "avarageSlope": 1000,
+            "usersIds": [
+              201,
+              203,
+              207,
+              209
+            ],
+            "activityType": "bicicleta",
+            "rating": 9.8
+          },
+          {
+            "id": 102,
+            "name": "Sentidos",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 7,
+            "avarageSlope": 250,
+            "usersIds": [
+              201,
+              202
+            ],
+            "activityType": "bicicleta",
+            "rating": 7.2
+          },
+          {
+            "id": 105,
+            "name": "Caldera",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 8,
+            "avarageSlope": 400,
+            "usersIds": [
+              202,
+              213,
+              214,
+              216
+            ],
+            "activityType": "bicicleta",
+            "rating": 9.2
+          }
+        ],
+        "activityType": "bicicleta",
+        "totalKms": 33,
+        "users": [
+          {
+            "id": 201,
+            "name": "Ana",
+            "activity": "correr",
+            "friends": [
+              202,
+              203
+            ],
+            "friendsGroup": [
+              202
+            ],
+            "stats": {
+              "kmWeek": 76,
+              "slopeWeek": 3200,
+              "kmMonth": 354,
+              "slopeMonth": 12800,
+              "kmYear": 3248,
+              "slopeYear": 153600
+            },
+            "favoriteRoutes": [
+              101,
+              102
+            ],
+            "activeChallenge": [
+              1,
+              3
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          },
+          {
+            "id": 203,
+            "name": "María",
+            "activity": "bicicleta",
+            "friends": [
+              201,
+              206
+            ],
+            "friendsGroup": [
+              201
+            ],
+            "stats": {
+              "kmWeek": 92,
+              "slopeWeek": 5100,
+              "kmMonth": 378,
+              "slopeMonth": 24000,
+              "kmYear": 4016,
+              "slopeYear": 288000
+            },
+            "favoriteRoutes": [
+              106,
+              108
+            ],
+            "activeChallenge": [
+              2,
+              3
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          },
+          {
+            "id": 207,
+            "name": "Laura",
+            "activity": "correr",
+            "friends": [
+              206,
+              208,
+              209,
+              210
+            ],
+            "friendsGroup": [
+              208,
+              209
+            ],
+            "stats": {
+              "kmWeek": 69,
+              "slopeWeek": 3000,
+              "kmMonth": 226,
+              "slopeMonth": 12000,
+              "kmYear": 3136,
+              "slopeYear": 144000
+            },
+            "favoriteRoutes": [
+              103,
+              106,
+              108
+            ],
+            "activeChallenge": [
+              1,
+              2
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Vuelta Tenerife",
+        "routes": [
+          {
+            "id": 106,
+            "name": "Guanches",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 9,
+            "avarageSlope": 300,
+            "usersIds": [
+              205,
+              208,
+              215
+            ],
+            "activityType": "corriendo",
+            "rating": 9.7
+          },
+          {
+            "id": 104,
+            "name": "Acantilados",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 10,
+            "avarageSlope": 500,
+            "usersIds": [
+              205,
+              210,
+              211,
+              212,
+              215
+            ],
+            "activityType": "corriendo",
+            "rating": 8.7
+          },
+          {
+            "id": 103,
+            "name": "Lavas",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 8,
+            "avarageSlope": 600,
+            "usersIds": [
+              204,
+              206,
+              207,
+              208
+            ],
+            "activityType": "corriendo",
+            "rating": 6.8
+          },
+          {
+            "id": 107,
+            "name": "Bosques",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 12,
+            "avarageSlope": 400,
+            "usersIds": [
+              217
+            ],
+            "activityType": "corriendo",
+            "rating": 8.8
+          },
+          {
+            "id": 110,
+            "name": "Pueblos",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 2,
+            "avarageSlope": 200,
+            "usersIds": [
+              213,
+              220
+            ],
+            "activityType": "corriendo",
+            "rating": 5.4
+          }
+        ],
+        "activityType": "corriendo",
+        "totalKms": 41,
+        "users": [
+          {
+            "id": 202,
+            "name": "Juan",
+            "activity": "correr",
+            "friends": [
+              205,
+              214,
+              216
+            ],
+            "friendsGroup": [
+              205,
+              216
+            ],
+            "stats": {
+              "kmWeek": 87,
+              "slopeWeek": 4900,
+              "kmMonth": 248,
+              "slopeMonth": 19600,
+              "kmYear": 4676,
+              "slopeYear": 235200
+            },
+            "favoriteRoutes": [
+              107
+            ],
+            "activeChallenge": [
+              2
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          },
+          {
+            "id": 204,
+            "name": "Luis",
+            "activity": "bicicleta",
+            "friends": [
+              220
+            ],
+            "friendsGroup": [
+              220
+            ],
+            "stats": {
+              "kmWeek": 63,
+              "slopeWeek": 2700,
+              "kmMonth": 292,
+              "slopeMonth": 10800,
+              "kmYear": 4524,
+              "slopeYear": 129600
+            },
+            "favoriteRoutes": [
+              103
+            ],
+            "activeChallenge": [
+              1
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Estrellas",
+        "routes": [
+          {
+            "id": 108,
+            "name": "Bodegas",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 17,
+            "avarageSlope": 500,
+            "usersIds": [
+              201,
+              217,
+              220
+            ],
+            "activityType": "bicicleta",
+            "rating": 6.2
+          },
+          {
+            "id": 109,
+            "name": "Molinos",
+            "startCoords": {
+              "x": 28.4894,
+              "y": 16.3168
+            },
+            "endCoords": {
+              "x": 28.4841,
+              "y": 16.2337
+            },
+            "length": 14,
+            "avarageSlope": 400,
+            "usersIds": [
+              218,
+              219
+            ],
+            "activityType": "bicicleta",
+            "rating": 7.7
+          }
+        ],
+        "activityType": "bicicleta",
+        "totalKms": 31,
+        "users": [
+          {
+            "id": 205,
+            "name": "Sofía",
+            "activity": "correr",
+            "friends": [
+              208,
+              209,
+              211
+            ],
+            "friendsGroup": [
+              209,
+              211
+            ],
+            "stats": {
+              "kmWeek": 91,
+              "slopeWeek": 5000,
+              "kmMonth": 324,
+              "slopeMonth": 20000,
+              "kmYear": 4068,
+              "slopeYear": 240000
+            },
+            "favoriteRoutes": [
+              107,
+              109,
+              110
+            ],
+            "activeChallenge": [
+              2
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          },
+          {
+            "id": 206,
+            "name": "Carlos",
+            "activity": "correr",
+            "friends": [
+              204,
+              205,
+              217,
+              219,
+              220
+            ],
+            "friendsGroup": [
+              205,
+              206,
+              217
+            ],
+            "stats": {
+              "kmWeek": 86,
+              "slopeWeek": 4700,
+              "kmMonth": 384,
+              "slopeMonth": 18800,
+              "kmYear": 4128,
+              "slopeYear": 225600
+            },
+            "favoriteRoutes": [
+              105,
+              107
+            ],
+            "activeChallenge": [
+              1
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          },
+          {
+            "id": 208,
+            "name": "José",
+            "activity": "bicicleta",
+            "friends": [
+              201,
+              213
+            ],
+            "friendsGroup": [
+              201
+            ],
+            "stats": {
+              "kmWeek": 73,
+              "slopeWeek": 3200,
+              "kmMonth": 252,
+              "slopeMonth": 12800,
+              "kmYear": 3004,
+              "slopeYear": 153600
+            },
+            "favoriteRoutes": [
+              104
+            ],
+            "activeChallenge": [
+              3
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          },
+          {
+            "id": 209,
+            "name": "Pablo",
+            "activity": "bicicleta",
+            "friends": [
+              219
+            ],
+            "friendsGroup": [
+              219
+            ],
+            "stats": {
+              "kmWeek": 72,
+              "slopeWeek": 3100,
+              "kmMonth": 328,
+              "slopeMonth": 12400,
+              "kmYear": 3756,
+              "slopeYear": 148800
+            },
+            "favoriteRoutes": [
+              102,
+              105
+            ],
+            "activeChallenge": [
+              2,
+              3
+            ],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          },
+          {
+            "id": 210,
+            "name": "Miguel",
+            "activity": "bicicleta",
+            "friends": [
+              213,
+              214
+            ],
+            "friendsGroup": [
+              214
+            ],
+            "stats": {
+              "kmWeek": 65,
+              "slopeWeek": 2900,
+              "kmMonth": 290,
+              "slopeMonth": 11600,
+              "kmYear": 3220,
+              "slopeYear": 139200
+            },
+            "favoriteRoutes": [
+              106
+            ],
+            "activeChallenge": [],
+            "routeHistory": [
+              {
+                "date": "12/05/2022",
+                "idRoute": 101
+              },
+              {
+                "date": "23/07/2022",
+                "idRoute": 102
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

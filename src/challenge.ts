@@ -1,4 +1,5 @@
 import { Route } from "./route";
+import { User } from "./users";
 
 /**
  * Challenges that are included in the system.
@@ -9,7 +10,7 @@ export class Challenge {
   private routes: Route[];
   private activityType: string;
   private totalKms: number;
-  //private users;
+  private users: User[];
 
   /**
    * Challenge's constructor.
@@ -18,13 +19,22 @@ export class Challenge {
    * @param routes Routes that compose the challenge.
    * @param activityType Indicate if the challenge can be completed by bike or running.
    */
-  constructor(id, name, routes, activityType) {
+  constructor(id, name, routes, activityType, users) {
     this.id = id;
     this.name = name;
     this.routes = routes;
     this.activityType = activityType;
     this.totalKms = 0;
     this.totalKms = this.getTotalKms();
+    this.users = users;
+  }
+
+  /**
+   * Get number of users that are doing the challenge.
+   * @returns the number of user.
+   */
+  getNumberofUser() {
+    return this.users.length
   }
 
   /**
@@ -60,11 +70,20 @@ export class Challenge {
         str += this.routes[i].getName()
       }
     }
+    let str2 = "";
+    for (let i = 0; i < this.users.length; i++) {
+      if (i < this.users.length - 1) {
+        str2 += this.users[i].getName() + ", ";
+      } else {
+        str2 += this.users[i].getName()
+      }
+    }
     const result = (`Id: ${this.id}
 Nombre: ${this.name}
 Rutas: ${str}
 Actividad: ${this.activityType}
-Kms: ${this.totalKms}`);
+Kms: ${this.totalKms}
+Usuarios: ${str2}`);
     return result;
   }  
 }

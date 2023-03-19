@@ -15,20 +15,6 @@ export type routeHistory = {
 }
 
 export class User {
-    ; // IDs de usuarios con los que interacciona
-    //grupos: { [id: number]: number[] }; // Diferentes colecciones de IDs de usuarios con los que suele realizar rutas
-    // estadisticas: {
-    //     kmSemana: number;
-    //     desnivelSemana: number;
-    //     kmMes: number;
-    //     desnivelMes: number;
-    //     kmAno: number;
-    //     desnivelAno: number;
-    // };
-    //retosActivos: number[]; // IDs de los retos que el usuario está realizando actualmente
-    //historicoRutas: { fecha: Date; rutaId: number }[]; // Historial de rutas realizadas por el usuario
-    //routeHistory: routeHistory[];
-
     constructor(public id: number,public name: string,public activity: string,public friends: number[], public friendsGroup: number[], public stats: stats, public favoriteRoutes: number[], public activeChallenge: number[], public routeHistory: routeHistory[]) {
         // this.grupos = {};
         // this.estadisticas = {
@@ -85,7 +71,7 @@ export class User {
   //       }
   //   }
 
-    getStat() {
+    getStats() {
       return this.stats;
     }
 
@@ -164,24 +150,24 @@ return result;
   }
 }
 
-const stats1: stats = {
-    kmWeek: 76,
-    slopeWeek: 150,
-    kmMonth: 210,
-    slopeMonth: 500,
-    kmYear: 1375,
-    slopeYear: 7000
-}
+// const stats1: stats = {
+//     kmWeek: 76,
+//     slopeWeek: 150,
+//     kmMonth: 210,
+//     slopeMonth: 500,
+//     kmYear: 1375,
+//     slopeYear: 7000
+// }
 
-const routeHistory1: routeHistory = {
-    date: "12/05/2022",
-    idRoute: 101
-}
+// const routeHistory1: routeHistory = {
+//     date: "12/05/2022",
+//     idRoute: 101
+// }
 
-const routeHistory2: routeHistory = {
-    date: "23/07/2022",
-    idRoute: 102
-}
+// const routeHistory2: routeHistory = {
+//     date: "23/07/2022",
+//     idRoute: 102
+// }
 
 // const prueba = new User(1, "prueba", "correr", [201, 202], [201, 202], stats1, [101, 102], [1, 3], [routeHistory1, routeHistory2])
 // console.log(prueba.print());

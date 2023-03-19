@@ -5,6 +5,10 @@ import { Collection } from "./collection";
  * Challenge collection extended from abstract class Colection.
  */
 export class ChallengeCollection extends Collection<Challenge> {
+  /**
+   * Constructor's class.
+   * @param challenges array of challenges.
+   */
   constructor(challenges: Challenge[]){
     super(challenges);
   }
@@ -41,14 +45,21 @@ export class ChallengeCollection extends Collection<Challenge> {
     return this.items.sort((a, b) => b.getTotalKms() - a.getTotalKms());
   }
 
+  /**
+   * Sort the challenges based on the number of users in ascending order.
+   * @returns the challenge collection sorted.
+   */
+  userSortAscend() {
+    return this.items.sort((a, b) => a.getNumberofUser() - b.getNumberofUser())
+  }
 
-  // userSortAscend() {
-  //   return this.items.sort((a, b) => a.)
-  // }
-
-  // userSortDescend() {
-
-  // }
+  /**
+   * Sort the challenges based on the number of users in descending order.
+   * @returns the challenge collection sorted,
+   */
+  userSortDescend() {
+    return this.items.sort((a, b) => b.getNumberofUser() - a.getNumberofUser())
+  }
 
   /**
    * Get the length collection.
