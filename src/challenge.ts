@@ -1,13 +1,8 @@
 import { Route } from "./route";
-import { coords } from "./route";
 
-const a: coords = { x: 2.4, y: 3.6 };
-
-const b: coords = { x: 5.6, y: 9.8 };
-
-const route1 = new Route(123, "nombre", a, b, 120, 13, [1], "bici", 9);
-const route2 = new Route(141, "nombre2", b, a, 120, 10, [1], "bici", 9);
-
+/**
+ * Challenges that are included in the system.
+ */
 export class Challenge {
   private id: number;
   private name: string;
@@ -16,6 +11,13 @@ export class Challenge {
   private totalKms: number;
   //private users;
 
+  /**
+   * Challenge's constructor.
+   * @param id Challenge id.
+   * @param name Challenge name.
+   * @param routes Routes that compose the challenge.
+   * @param activityType Indicate if the challenge can be completed by bike or running.
+   */
   constructor(id, name, routes, activityType) {
     this.id = id;
     this.name = name;
@@ -25,10 +27,18 @@ export class Challenge {
     this.totalKms = this.getTotalKms();
   }
 
+  /**
+   * Get challenge name.
+   * @returns the challenge name.
+   */
   getName() {
     return this.name;
   }
 
+  /**
+   * Get total kms of the challenge.
+   * @returns total number of Kms.
+   */
   getTotalKms() {
     this.totalKms = 0;
     for (let i = 0; i < this.routes.length; i++) {
@@ -37,6 +47,10 @@ export class Challenge {
     return this.totalKms;
   }
 
+  /**
+   * Print the challenge.
+   * @returns The string with the result.
+   */
   print() {
     let str = "";
     for (let i = 0; i < this.routes.length; i++) {
@@ -46,14 +60,11 @@ export class Challenge {
         str += this.routes[i].getName()
       }
     }
-    console.log(`Id: ${this.id}
+    const result = (`Id: ${this.id}
 Nombre: ${this.name}
 Rutas: ${str}
 Actividad: ${this.activityType}
 Kms: ${this.totalKms}`);
-  }
+    return result;
+  }  
 }
-const chall = new Challenge(10, "nombre", [route1, route2], "bici");
-
-// console.log(chall.getTotalKms());
-// console.log(chall.getTotalKms());

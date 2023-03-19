@@ -40,16 +40,6 @@ export class Route {
     this.rating = rating;
   }
 
-
-
-  // /**
-  //  * Get route id.
-  //  * @returns Route id.
-  //  */
-  // getId() {
-  //   return this.id;
-  // }
-
   /**
    * Get route name.
    * @returns Route name.
@@ -58,21 +48,13 @@ export class Route {
     return this.name;
   }
 
-  // /**
-  //  * Get start geolocation.
-  //  * @returns Start Coordinates.
-  //  */
-  // getStartCoords() {
-  //   return this.startCoords;
-  // }
-
-  // /**
-  //  * Get end geolocation.
-  //  * @returns End Coordinates.
-  //  */
-  // getEndCoords() {
-  //   return this.endCoords;
-  // }
+  /**
+   * Get amount of users.
+   * @returns users quantity.
+   */
+  getUsersQuantity() {
+    return this.usersIds.length;
+  }
 
   /**
    * Get routes length (Kms).
@@ -82,23 +64,44 @@ export class Route {
     return this.length;
   }
 
-  // /**
-  //  * Get avarege slope of the route.
-  //  * @returns number of avarage slope.
-  //  */
-  // getAvarageSlope() {
-  //   return this.avarageSlope;
-  // }
+  /**
+   * Get route activity.
+   * @returns Activity type.
+   */
+  getActivityType() {
+    return this.activityType;
+  }
 
-  // /**
-  //  * Get route activity.
-  //  * @returns 
-  //  */
-  // getActivityType() {
-  //   return this.activityType;
-  // }
+  /**
+   * Get route rating.
+   * @returns Avarage route rating.
+   */
+  getRating() {
+    return this.rating;
+  }
 
-  // getScore() {
-  //   return this.rating;
-  // }
+  /**
+   * Print the route.
+   * @returns The string with the result.
+   */
+  print() {
+    let str = "";
+    for (let i = 0; i < this.usersIds.length; i++) {
+      if (i < this.usersIds.length - 1) {
+        str += this.usersIds[i] + ", ";
+      } else {
+        str += this.usersIds[i]
+      }
+    }
+    const result = (`Id: ${this.id}
+Nombre: ${this.name}
+Geolocalización de inicio: ${this.startCoords.x}, ${this.startCoords.y}
+Geolocalización del final: ${this.endCoords.x}, ${this.endCoords.y}
+Longitud de la ruta: ${this.length} kilómetros
+Desnivel medio de la ruta: ${this.avarageSlope} metros
+Ids de los usuarios que han realizado la ruta: ${str}
+Actividad: ${this.activityType}
+Calificación media: ${this.rating}`);
+return result;
+  }
 }
