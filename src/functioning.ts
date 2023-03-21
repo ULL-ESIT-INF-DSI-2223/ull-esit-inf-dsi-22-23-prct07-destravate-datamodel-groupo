@@ -145,7 +145,7 @@ const dateMenu = [
   {
     type: 'list',
     name: 'option',
-    mesage: '¿En base a qué fecha?',
+    message: '¿En base a qué fecha?',
     choices: [
       {name: 'Semana', value: 'week'},
       {name: 'Mes', value: 'month'},

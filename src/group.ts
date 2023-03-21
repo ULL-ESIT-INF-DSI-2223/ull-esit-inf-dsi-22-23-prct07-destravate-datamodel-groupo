@@ -67,17 +67,17 @@ export class Group {
     return this.stats;
   }
 
-  set Stats(stats: stats) {
-    this.stats = stats;
-  }
+  // set Stats(stats: stats) {
+  //   this.stats = stats;
+  // }
 
-  get FavoriteRoutes() {
-    return this.favoriteRoutes;
-  }
+  // get FavoriteRoutes() {
+  //   return this.favoriteRoutes;
+  // }
 
-  set FavoriteRoutes(favoriteRoutes: Route[]) {
-    this.favoriteRoutes = favoriteRoutes;
-  }
+  // set FavoriteRoutes(favoriteRoutes: Route[]) {
+  //   this.favoriteRoutes = favoriteRoutes;
+  // }
 
   /**
    * Print the stats of the group.
@@ -117,7 +117,8 @@ return result;
     const result = (`Id: ${this.id}
 Nombre: ${this.name}
 Participantes: ${str}
-Estadísticas: ${this.statsPrint()}
+Estadísticas:
+${this.statsPrint()}
 Clasificación:
 Rutas favoritas: ${str2}`)
   return result;

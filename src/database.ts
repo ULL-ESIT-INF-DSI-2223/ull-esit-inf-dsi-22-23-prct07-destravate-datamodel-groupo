@@ -43,11 +43,11 @@ export const stats18: stats = {kmWeek: 58, slopeWeek: 2600, kmMonth: 272, slopeM
 export const stats19: stats = {kmWeek: 93, slopeWeek: 4700, kmMonth: 322, slopeMonth: 18800, kmYear: 4254, slopeYear: 225600};
 export const stats20: stats = {kmWeek: 75, slopeWeek: 3800, kmMonth: 298, slopeMonth: 15200, kmYear: 4183, slopeYear: 182400};
 
-const groupStats1: stats = {kmWeek: 228, slopeWeek: 9600, kmMonth: 1062, slopeMonth: 38400, kmYear: 9744, slopeYear: 460800};
-const groupStats2: stats = {kmWeek: 375, slopeWeek: 19000, kmMonth: 1490, slopeMonth: 76000, kmYear: 20915, slopeYear: 912000};
-const groupStats3: stats = {kmWeek: 232, slopeWeek: 10400, kmMonth: 544, slopeMonth: 52000, kmYear: 15600, slopeYear: 499200};
-const groupStats4: stats = {kmWeek: 248, slopeWeek: 12400, kmMonth: 1104, slopeMonth: 49600, kmYear: 15484, slopeYear: 595200};
-const groupStats5: stats = {kmWeek: 207, slopeWeek: 9000, kmMonth: 678, slopeMonth: 36000, kmYear: 9408, slopeYear: 432000};
+export const groupStats1: stats = {kmWeek: 228, slopeWeek: 9600, kmMonth: 1062, slopeMonth: 38400, kmYear: 9744, slopeYear: 460800};
+export const groupStats2: stats = {kmWeek: 375, slopeWeek: 19000, kmMonth: 1490, slopeMonth: 76000, kmYear: 20915, slopeYear: 912000};
+export const groupStats3: stats = {kmWeek: 232, slopeWeek: 10400, kmMonth: 544, slopeMonth: 52000, kmYear: 15600, slopeYear: 499200};
+export const groupStats4: stats = {kmWeek: 248, slopeWeek: 12400, kmMonth: 1104, slopeMonth: 49600, kmYear: 15484, slopeYear: 595200};
+export const groupStats5: stats = {kmWeek: 207, slopeWeek: 9000, kmMonth: 678, slopeMonth: 36000, kmYear: 9408, slopeYear: 432000};
 
 const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}
 const routeHistory2: routeHistory = {date: "23/07/2022", idRoute: 102}
