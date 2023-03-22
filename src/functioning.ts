@@ -4,12 +4,7 @@ import { group1, group2, group3, group4, group5 } from "./database";
 import { chall1, chall2, chall3 } from "./database";
 import { ChallengeCollection } from "./challengecollection";
 
-
-
 import { UserCollection } from "./usersollection";
-
-
-
 
 import { inquirer } from "inquirer"
 import { lowdb } from "lowdb"
@@ -30,9 +25,11 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
 
-db.defaults({challCol}).write();
+//db.defaults({routeCol}).write();
 
-// const p = db.get('challCol').value()
+//db.get("rutas").concat(routeCol).write()
+
+// let p = db.get('routeCol').value()
 
 // console.log(p);
 
@@ -45,7 +42,7 @@ const questionsMenu = [
       {name: 'Mostrar elemento', value: 'navegation'},
       {name: 'Añadir elemento', value: 'add'},
       {name: 'Modificar elemento', value: 'modify'},
-      {name: 'Borar elemento', value: 'delete'}
+      {name: 'Borrar elemento', value: 'delete'}
     ]
   }
 ]
@@ -226,6 +223,14 @@ const addChallMenu = [
   {
     type: 'users',
     name: 'kms',    
+  }
+]
+
+const removeRoute = [
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Id de la ruta que desea borrar: '
   }
 ]
 
@@ -607,6 +612,49 @@ const addChallMenu = [
         break;
 
       case 'delete':
+        inquirer.prompt(optionsMenu).then(answer => {
+          switch (answer.option) {
+            case 'route':            
+              inquirer.prompt(removeRoute).then(answer => {  
+                console.log(answer.id)  
+                if (db.get('routeCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('routeCol.items').remove({ id: Number(answer.id) }).write();
+                } else {
+                  console.log("El elemento no está en la base de datos.")
+                }
+                
+              });
+            //  console.log(prueba);
+            //   prueba.pull({id: 101});
+              //db.write()
+              //.remove({id: 101}).write()
+
+              // routeCol.removeItem(3);
+              // db.defaults({routeCol}).write();
+
+              // const p = db.get('routeCol').value()
+              
+              // console.log(p);
+              break;
+            case 'user':
+
+              break;
+
+            case 'group':
+              break;
+
+            case 'challenge':
+              inquirer.prompt(addChallMenu).then(answer => {
+                console.log(answer);
+                challCol.addItem(answer);
+                console.log(challCol);
+                db.defaults({challCol}).write();
+                const p = db.get('challCol').value()
+                console.log(p);
+              });
+              break;
+          }
+        });
         break;
     }
   });
