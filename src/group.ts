@@ -1,5 +1,5 @@
 import { Route } from "./route";
-//import { User } from "./users";
+import { User } from "./users";
 import { routeHistory } from "./users";
 
 export type stats = {
@@ -39,8 +39,8 @@ export class Group {
   }
 
   get Id() {
-     return this.id;
-   }
+    return this.id;
+  }
 
   // set Id(id: number) {
   //   this.id = id;
@@ -122,12 +122,12 @@ return result;
       }
     }
     const result = (`Id: ${this.id}
-Nombre: ${this.name}
-Participantes: ${str}
-Estadísticas:
-${this.statsPrint()}
-Clasificación:
-Rutas favoritas: ${str2}`)
+    Nombre: ${this.name}
+    Participantes: ${str}
+    Estadísticas:
+    ${this.statsPrint()}
+    Clasificación:
+    Rutas favoritas: ${str2}`)
   return result;
   }
 
