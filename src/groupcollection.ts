@@ -96,4 +96,15 @@ export class GroupCollection extends Collection<Group> {
   getLength() {
     return this.items.length;
   }
+
+  showGroups() {
+    this.items.forEach(group => {
+      console.log(group.Id, group.getName());
+    });
+  }
+
+  getGroupById(id: number) {
+    return this.items.find(group => group.Id === id);
+  }
+
 }

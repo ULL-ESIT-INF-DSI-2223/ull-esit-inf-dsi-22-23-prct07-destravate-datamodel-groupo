@@ -28,10 +28,17 @@ export class User {
         // this.retosActivos = [];
         // this.historicoRutas = [];
     }
+    
 
-    // agregarAmigo(idAmigo: number) {
-    //     this.amigos.push(idAmigo);
-    // }
+
+    addFriend(idFriend: number) {
+        this.friends.push(idFriend);
+    }
+    deleteFriend(idFriend: number) {
+        this.friends.splice(this.friends.indexOf(idFriend), 1);
+    }
+    
+
 
     // crearGrupo(idGrupo: string, nombreGrupo: string, miembros: string[]) {
     //     this.grupos[idGrupo] = miembros;

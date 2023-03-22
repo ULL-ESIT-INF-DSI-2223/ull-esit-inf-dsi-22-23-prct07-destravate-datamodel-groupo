@@ -80,4 +80,15 @@ export class UserCollection extends Collection<User> {
   getLength() {
     return this.items.length;
   }
-}
+
+  getUserbyId(id: number) {
+    return this.items.find((user) => user.id === id);
+  }
+
+  showUsers() {
+    this.items.forEach((user) => {
+      console.log(user.id);
+    });
+  }
+
+};

@@ -40,6 +40,10 @@ export class Route {
     this.rating = rating;
   }
 
+  getId() {
+    return this.id;
+  }
+
   /**
    * Get route name.
    * @returns Route name.

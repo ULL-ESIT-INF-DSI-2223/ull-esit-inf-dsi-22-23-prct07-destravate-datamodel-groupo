@@ -15,25 +15,32 @@ export type stats = {
  * Group that are included in the system.
  */
 export class Group {
+
   private id: number;
   private name: string;
   private members: number[];
   private stats: stats;
   private favoriteRoutes: Route[];
   private routeHistory: routeHistory[];
+  private owner: number;
 
-  constructor(id, name, members, stats, favoriteRoutes, routeHistory) {
+  constructor(id, name, members, stats, favoriteRoutes, routeHistory, owner = 0) {
     this.id = id;
     this.name = name;
     this.members = members;
     this.stats = stats;
     this.favoriteRoutes = favoriteRoutes;
     this.routeHistory = routeHistory;
+    this.owner = owner;
   }
 
-  // get Id() {
-  //   return this.id;
-  // }
+  get Owner() {
+    return this.owner;
+  }
+
+  get Id() {
+     return this.id;
+   }
 
   // set Id(id: number) {
   //   this.id = id;
@@ -182,4 +189,9 @@ Rutas favoritas: ${str2}`)
     return users;
   }
   */
+
+  addUser(user: User) {
+    this.members.push(user.id);
+  }
+
 }
