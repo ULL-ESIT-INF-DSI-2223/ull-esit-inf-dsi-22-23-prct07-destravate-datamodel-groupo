@@ -11,7 +11,7 @@ export class Route {
   private name: string;
   private startCoords: coords;
   private endCoords: coords;
-  private length: number;
+  public length: number;
   private avarageSlope: number;
   private usersIds: number[];
   private activityType: string;

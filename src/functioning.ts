@@ -3,6 +3,7 @@ import { user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, 
 import { group1, group2, group3, group4, group5 } from "./database";
 import { chall1, chall2, chall3 } from "./database";
 import { ChallengeCollection } from "./challengecollection";
+import { coords } from "./route";
 
 import { UserCollection } from "./usersollection";
 
@@ -11,6 +12,9 @@ import { lowdb } from "lowdb"
 
 import { RouteCollection } from "./routescollection";
 import { GroupCollection } from "./groupcollection";
+import { Route } from "./route";
+import { Challenge } from "./challenge";
+import { User } from "./users";
 
 
 const challCol = new ChallengeCollection([chall1, chall2, chall3]);
@@ -152,47 +156,63 @@ const addRouteMenu = [
   {
     type: 'input',
     name: 'id',
-    messsage: 'Introduzca el id de la ruta',
+    message: 'Introduzca el id de la ruta: ',
   },
   {
     type: 'input',
     name: 'name',
-    messsage: 'Introduzca el nombre de la ruta',
+    message: 'Introduzca el nombre de la ruta: ',
   },
   {
     type: 'input',
-    name: 'scoords',
-    messsage: 'Introduzca las coordenadas de inicio de la ruta',
+    name: 'scoordsx',
+    message: 'Introduzca las coordenadas x de inicio de la ruta: ',
   },
   {
     type: 'input',
-    name: 'ecoords',
-    messsage: 'Introduzca las coordenadas finales de la ruta',
+    name: 'scoordsy',
+    message: 'Introduzca las coordenadas y de inicio de la ruta: ',
+  },
+  {
+    type: 'input',
+    name: 'ecoordsx',
+    message: 'Introduzca las coordenadas x finales de la ruta: ',
+  },
+  {
+    type: 'input',
+    name: 'ecoordsy',
+    message: 'Introduzca las coordenadas y finales de la ruta: ',
   },
   {
     type: 'input',
     name: 'length',
-    messsage: 'Introduzca la longitud de la ruta en kilómetros',
+    message: 'Introduzca la longitud de la ruta en kilómetros: ',
   },
   {
     type: 'input',
     name: 'slope',
-    messsage: 'Introduzca el desnivel medio de la ruta',
+    message: 'Introduzca el desnivel medio de la ruta: ',
   },
   {
-    type: 'editor',
+    type: 'input',
     name: 'uids',
-    messsage: 'Introduzca el id de los usuario que han realizado la ruta separados por un salto de línea',
+    message: 'Introduzca el id de los usuario que han realizado la ruta separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
   },
   {
     type: 'input',
     name: 'activity',
-    message: 'Introduzca el tipo de actividad de la ruta (bicicleta o corriendo)'
+    message: 'Introduzca el tipo de actividad de la ruta (bicicleta o corriendo): '
   },
   {
     type: 'input',
     name: 'rating',
-    message: 'Introduzca la calificación media de la ruta'
+    message: 'Introduzca la calificación media de la ruta: '
   }
 ]
 
@@ -200,27 +220,40 @@ const addChallMenu = [
   {
     type: 'input',
     name: 'id',    
+    message: 'Introduzca el id del reto: '
   },
   {
     type: 'input',
-    name: 'name',    
+    name: 'name',  
+    message: 'Introduzca el nombre del reto: '  
   },
   {
     type: 'input',
-    name: 'routes',    
+    name: 'routes',
+    message: 'Introduzca el id de las rutas que desea añadir separado por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
   },
   {
     type: 'input',
     name: 'activity',    
+    message: 'Introduzca el tipo de actividad de la ruta (bicicleta o corriendo): '
   },
   {
     type: 'input',
-    name: 'kms',    
+    name: 'users',   
+    message: 'Introduzca el id de los usuarios que desea añadir separado por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
   },
-  {
-    type: 'users',
-    name: 'kms',    
-  }
 ]
 
 const remove = [
@@ -579,9 +612,13 @@ const remove = [
           switch (answer.option) {
             case 'route':
               inquirer.prompt(addRouteMenu).then(answer => {
-                console.log(answer);
-                routeCol.addItem(answer);
-                console.log(routeCol);
+                const vector = answer.uids.split(',').map((v) => Number(v.trim()));
+                const sCoords: coords = {x: Number(answer.scoordsx), y: Number(answer.scoordsy)};
+                const eCoords: coords = {x: Number(answer.ecoordsx), y: Number(answer.ecoordsy)};
+                const newRoute = new Route(Number(answer.id), answer.name, sCoords, eCoords, Number(answer.length), Number(answer.slope), vector, answer.activity, Number(answer.rating));
+                
+                routeCol.addItem(newRoute);
+                db.get('routeCol.items').push(newRoute).write();
               });
               break;
             case 'user':
@@ -593,12 +630,21 @@ const remove = [
 
             case 'challenge':
               inquirer.prompt(addChallMenu).then(answer => {
-                console.log(answer);
-                challCol.addItem(answer);
-                console.log(challCol);
-                db.defaults({challCol}).write();
-                const p = db.get('challCol').value()
-                console.log(p);
+                const vector2: Route[] = [];
+                const vector3: User[] = [];
+                const vector = answer.routes.split(',').map((v) => Number(v.trim()));
+                  for (let i = 0; i < vector.length; i++) {
+                   vector2.push(db.get('routeCol.items').find({ id: vector[i]}).value());
+                  }
+                const vector5 = answer.users.split(',').map((v) => Number(v.trim()));
+
+                  for (let i = 0; i < vector5.length; i++) {
+                    vector3.push(db.get('userCol.items').find({id: vector5[i]}).value());
+                  }
+                const newChall = new Challenge(Number(answer.id), answer.name, vector2, answer.activity, vector3);
+                
+                challCol.addItem(newChall);
+                db.get('challCol.items').push(newChall).write();
               });
               break;
           }

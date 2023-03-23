@@ -7,7 +7,7 @@ import { User } from "./users";
 export class Challenge {
   private id: number;
   private name: string;
-  private routes: Route[];
+  public routes: Route[];
   private activityType: string;
   private totalKms: number;
   private users: User[];
@@ -52,7 +52,7 @@ export class Challenge {
   getTotalKms() {
     this.totalKms = 0;
     for (let i = 0; i < this.routes.length; i++) {
-      this.totalKms += this.routes[i].getLength();
+      this.totalKms += this.routes[i].length;
     }
     return this.totalKms;
   }
