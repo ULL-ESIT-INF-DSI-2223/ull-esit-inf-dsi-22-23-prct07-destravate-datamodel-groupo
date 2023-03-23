@@ -15,19 +15,8 @@ export type routeHistory = {
 }
 
 export class User {
-    constructor(public id: number,public name: string,public activity: string,public friends: number[], public friendsGroup: number[], public stats: stats, public favoriteRoutes: number[], public activeChallenge: number[], public routeHistory: routeHistory[]) {
-        // this.grupos = {};
-        // this.estadisticas = {
-        // kmSemana: 0,
-        // desnivelSemana: 0,
-        // kmMes: 0,
-        // desnivelMes: 0,
-        // kmAno: 0,
-        // desnivelAno: 0,
-        // };
-        // this.retosActivos = [];
-        // this.historicoRutas = [];
-    }
+  constructor(public id: number,public name: string,public activity: string,public friends: number[], public friendsGroup: number[], public stats: stats, public favoriteRoutes: number[], public activeChallenge: number[], public routeHistory: routeHistory[]) {
+  }
     
 
 

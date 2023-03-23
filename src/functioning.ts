@@ -25,13 +25,10 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
 
-//db.defaults({routeCol}).write();
-
-//db.get("rutas").concat(routeCol).write()
-
-// let p = db.get('routeCol').value()
-
-// console.log(p);
+// db.defaults({routeCol}).write();
+// db.defaults({userCol}).write();
+// db.defaults({groupCol}).write();
+// db.defaults({challCol}).write();
 
 const questionsMenu = [
   {
@@ -226,11 +223,11 @@ const addChallMenu = [
   }
 ]
 
-const removeRoute = [
+const remove = [
   {
     type: 'input',
     name: 'id',
-    message: 'Id de la ruta que desea borrar: '
+    message: 'Id del elemento que desea borrar: '
   }
 ]
 
@@ -615,42 +612,43 @@ const removeRoute = [
         inquirer.prompt(optionsMenu).then(answer => {
           switch (answer.option) {
             case 'route':            
-              inquirer.prompt(removeRoute).then(answer => {  
+              inquirer.prompt(remove).then(answer => {  
                 console.log(answer.id)  
                 if (db.get('routeCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('routeCol.items').remove({ id: Number(answer.id) }).write();
                 } else {
                   console.log("El elemento no está en la base de datos.")
-                }
-                
+                }                
               });
-            //  console.log(prueba);
-            //   prueba.pull({id: 101});
-              //db.write()
-              //.remove({id: 101}).write()
-
-              // routeCol.removeItem(3);
-              // db.defaults({routeCol}).write();
-
-              // const p = db.get('routeCol').value()
-              
-              // console.log(p);
               break;
             case 'user':
-
+              inquirer.prompt(remove).then(answer => {  
+                console.log(answer.id)  
+                if (db.get('userCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('userCol.items').remove({ id: Number(answer.id) }).write();
+                } else {
+                  console.log("El elemento no está en la base de datos.")
+                }                
+              });
               break;
-
             case 'group':
+              inquirer.prompt(remove).then(answer => {  
+                console.log(answer.id)  
+                if (db.get('groupCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('groupCol.items').remove({ id: Number(answer.id) }).write();
+                } else {
+                  console.log("El elemento no está en la base de datos.")
+                }                
+              });
               break;
-
             case 'challenge':
-              inquirer.prompt(addChallMenu).then(answer => {
-                console.log(answer);
-                challCol.addItem(answer);
-                console.log(challCol);
-                db.defaults({challCol}).write();
-                const p = db.get('challCol').value()
-                console.log(p);
+              inquirer.prompt(remove).then(answer => {  
+                console.log(answer.id)  
+                if (db.get('challCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('challCol.items').remove({ id: Number(answer.id) }).write();
+                } else {
+                  console.log("El elemento no está en la base de datos.")
+                }                
               });
               break;
           }
