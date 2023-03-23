@@ -29,11 +29,6 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
 
-// db.defaults({routeCol}).write();
-// db.defaults({userCol}).write();
-// db.defaults({groupCol}).write();
-// db.defaults({challCol}).write();
-
 const questionsMenu = [
   {
     type: 'list', 
@@ -264,10 +259,6 @@ const remove = [
   }
 ]
 
-//async function main() {
-
-  //let continue = true;
-  //while(true) {
   inquirer.prompt(questionsMenu).then(answer => {
     switch (answer.option) {
       case 'navegation':
@@ -368,7 +359,6 @@ const remove = [
                     break;
                 }
               });
-              //console.log(answer.option);
             break;
             case 'user':
               inquirer.prompt(userMenu).then(answer => {
@@ -634,7 +624,7 @@ const remove = [
                 const vector3: User[] = [];
                 const vector = answer.routes.split(',').map((v) => Number(v.trim()));
                   for (let i = 0; i < vector.length; i++) {
-                   vector2.push(db.get('routeCol.items').find({ id: vector[i]}).value());
+                    vector2.push(db.get('routeCol.items').find({ id: vector[i]}).value());
                   }
                 const vector5 = answer.users.split(',').map((v) => Number(v.trim()));
 
@@ -702,8 +692,3 @@ const remove = [
         break;
     }
   });
-
-  //}
-//}
-
-//main();

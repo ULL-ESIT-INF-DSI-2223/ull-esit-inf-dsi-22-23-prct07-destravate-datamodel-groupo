@@ -24,6 +24,16 @@ export class Group {
   private routeHistory: routeHistory[];
   private owner: number;
 
+  /**
+   * Group class constructor
+   * @param id Group's id
+   * @param name Group's name
+   * @param members Group's members
+   * @param stats Group's stats 
+   * @param favoriteRoutes Group's favorites routes
+   * @param routeHistory Group's history
+   * @param owner Group's owner
+   */
   constructor(id, name, members, stats, favoriteRoutes, routeHistory, owner = 0) {
     this.id = id;
     this.name = name;
@@ -34,17 +44,21 @@ export class Group {
     this.owner = owner;
   }
 
+  /**
+   * Group's function to get the owner
+   * @return The group's owner
+   */
   get Owner() {
     return this.owner;
   }
 
+  /**
+   * Group's function to get the id of the group
+   * @return the id of the group
+  */
   get Id() {
     return this.id;
   }
-
-  // set Id(id: number) {
-  //   this.id = id;
-  // }
 
   /**
    * Get the name of the group.
@@ -54,18 +68,6 @@ export class Group {
     return this.name;
   }
 
-  // set Name(name: string) {
-  //   this.name = name;
-  // }
-
-  // get Members() {
-  //   return this.members;
-  // }
-
-  // set Members(members: number[]) {
-  //   this.members = members;
-  // }
-
   /**
    * Get the stats of the group.
    * @returns the stats of the group.
@@ -73,18 +75,6 @@ export class Group {
   getStats() {
     return this.stats;
   }
-
-  // set Stats(stats: stats) {
-  //   this.stats = stats;
-  // }
-
-  // get FavoriteRoutes() {
-  //   return this.favoriteRoutes;
-  // }
-
-  // set FavoriteRoutes(favoriteRoutes: Route[]) {
-  //   this.favoriteRoutes = favoriteRoutes;
-  // }
 
   /**
    * Print the stats of the group.
@@ -139,57 +129,10 @@ return result;
     return this.members.length
   }
 
-  // get RouteHistory() {
-  //   return this.routeHistory;
-  // }
-
-  // set RouteHistory(routeHistory: { date: Date; routeID: number }[]) {
-  //   this.routeHistory = routeHistory;
-  // }
-
-  /*rankUsers(option: string): Usuario[] {
-    const usew = Object.values(this.members);
-    // Calcular estadísticas totales para cada usuario
-    const totalStats: { [key: number]: number } = {};
-    this.members.forEach((userID) => {
-      let total = 0;
-      const user = this.users[userID];
-      if (user) {
-        if (option === "distance") {
-          total +=
-            user.obtenerKmPorPeriodo("semana") +
-            user.obtenerKmPorPeriodo("mes") +
-            user.obtenerKmPorPeriodo("año");
-        } else if (option === "elevation") {
-          total +=
-            user.obtenerKmDesnivelPorPeriodo("semana") +
-            user.obtenerKmDesnivelPorPeriodo("mes") +
-            user.obtenerKmDesnivelPorPeriodo("año");
-        } else {
-          throw new Error("Opción no válida");
-        }
-      }
-      totalStats[userID] = total;
-    });
-
-    // Convertir totalStats hash a array de objetos de usuario
-    const users: Usuario[] = [];
-    for (const userID in totalStats) {
-      const user = this.users[parseInt(userID)];
-      if (user) {
-        users.push(user);
-      }
-    }
-
-    // Ordenar usuarios por total
-    users.sort((a, b) => {
-      return totalStats[b.id] - totalStats[a.id];
-    });
-
-    return users;
-  }
-  */
-
+  /**
+   * Group's function to add a new user
+   * @param user user to is going to be add to the group
+   */
   addUser(user: User) {
     this.members.push(user.id);
   }

@@ -101,12 +101,20 @@ export class RouteCollection extends Collection<Route> {
     return this.items.length;
   }
 
+  /**
+   * Function that print the names and ids of the routes
+   */
   printNames(){
     this.items.forEach(route => {
         console.log(route.getId(), route.getName())
     });
   }
 
+  /**
+   * Get a route by it's id
+   * @param id id of the route
+   * @returns A route find by it's id
+   */
   getRouteById(id: number){
     return this.items.find((route) => route.getId() === id);
   }

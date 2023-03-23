@@ -9,6 +9,23 @@
 		"module": "commonjs",
 		"rootDir": "./src",
 		"outDir": "./dist"
+	},
+	"typedocOptions":{
+		"entryPoints": [
+		"./src/challenge.ts",
+		"./src/challengecollection.ts",
+		"./src/collection.ts",
+		"./src/database.ts",
+		"./src/functioning.ts",
+		"./src/group.ts",
+		"./src/groupcollection.ts",
+		"./src/management.ts",
+		"./src/route.ts",
+		"./src/routescollection.ts",
+		"./src/users.ts",
+		"./src/usersollection.ts",
+		],
+		"out": "./docs"
 	}
 }
 

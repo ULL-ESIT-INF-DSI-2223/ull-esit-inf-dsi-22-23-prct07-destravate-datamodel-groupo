@@ -97,12 +97,20 @@ export class GroupCollection extends Collection<Group> {
     return this.items.length;
   }
 
+  /**
+   * Get the groups of the collection
+   */
   showGroups() {
     this.items.forEach(group => {
       console.log(group.Id, group.getName());
     });
   }
 
+  /**
+   * Get a group by it's id
+   * @param id id of the group get
+   * @returns a group found by his id
+   */
   getGroupById(id: number) {
     return this.items.find(group => group.Id === id);
   }
