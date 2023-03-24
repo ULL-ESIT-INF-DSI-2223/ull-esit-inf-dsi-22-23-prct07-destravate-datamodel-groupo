@@ -1,7 +1,7 @@
 import { route1, route2, route3, route4, route5, route6, route7, route8, route9, route10} from "./database"
 import { user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16, user17, user18, user19, user20} from "./database"
 import { group1, group2, group3, group4, group5 } from "./database";
-import { chall1, chall2, chall3 } from "./database";
+import { chall1, chall2, chall3} from "./database";
 import { ChallengeCollection } from "./challengecollection";
 import { coords } from "./route";
 
@@ -9,6 +9,7 @@ import { UserCollection } from "./usersollection";
 
 import { inquirer } from "inquirer"
 import { lowdb } from "lowdb"
+import { Group } from "./group"
 
 import { routeHistory } from "./users";
 
@@ -292,6 +293,71 @@ const addUserMenu = [
       return true;
     }
   },
+]
+
+const addGroupMenu = [
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduzca el id del grupo: '
+  },
+  {
+    type: 'input',
+    name: 'name',
+    message: 'Introduzca el name del grupo: '
+  },
+  {
+    type: 'input',
+    name: 'members',
+    message: 'Introduzca el id de los miembros del grupo separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  },
+  {
+    type: 'input',
+    name: 'kmweek',
+    message: 'Introduzca los km que realiza el grupo en la semana: '
+  },
+  {
+    type: 'input',
+    name: 'slopeweek',
+    message: 'Introduzca el desnivel que realiza el grupo en la semana: '
+  },
+  {
+    type: 'input',
+    name: 'kmmonth',
+    message: 'Introduzca los km que realiza el grupo en el mes: '
+  },
+  {
+    type: 'input',
+    name: 'slopemonth',
+    message: 'Introduzca el desnivel que realiza el grupo en el mes: '
+  },
+  {
+    type: 'input',
+    name: 'kmyear',
+    message: 'Introduzca los km que realiza el grupo en el año: '
+  },
+  {
+    type: 'input',
+    name: 'slopeyear',
+    message: 'Introduzca el desnivel que realiza el grupo en el año: '
+  },
+  {
+    type: 'input',
+    name: 'favroutes',
+    message: 'Introduzca el id de las rutas favoritas del grupo separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  }
 ]
 
 const addChallMenu = [
@@ -710,6 +776,17 @@ const remove = [
               break;
 
             case 'group':
+              inquirer.prompt(addGroupMenu).then(answer => {
+                const members = answer.members.split(',').map((v) => Number(v.trim()));
+                const stats: stats = {kmWeek: Number(answer.kmweek), slopeWeek: Number(answer.slopeweek), kmMonth: Number(answer.kmmonth), slopeMonth: Number(answer.slopemonth), kmYear: Number(answer.kmyear), slopeYear: Number(answer.slopeyear)}
+                const froute = answer.favroutes.split(',').map((v) => Number(v.trim()));                
+
+                const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}                
+
+                const newGroup = new Group(Number(answer.id), answer.name, members, stats, froute, routeHistory1);
+                groupCol.addItem(newGroup);
+                db.get('groupCol.items').push(newGroup).write();
+              });
               break;
 
             case 'challenge':

@@ -24,18 +24,19 @@ export class Management {
   private routes: RouteCollection;
   private groups: GroupCollection;
 
+
   /**
-   * Getter for the user logged in the system
-   * @returns the user logged in the system
-   */
+  * Getter for the user logged in the system
+  * @returns the user logged in the system
+  */
   getUser() {
     return this.user;
   }
 
-  /**
-   * Setter for the user logged in the system
-   * @param user the user logged in the system
-   */
+ /**
+  * Setter for the user logged in the system
+  * @param user the user logged in the system
+  */
   setUser(user: User) {
     this.user = user;
   }
@@ -159,7 +160,6 @@ export class Management {
     ]);
     if (this.users.getUserbyId(answer.id)) {
       console.log("El usuario ya existe");
-      await this.signIn();
     }
     const user = new User(
       answer.id,
@@ -202,7 +202,6 @@ export class Management {
       console.log("Bienvenido");
     } else {
       console.log("El usuario no existe. Vuelve a intentarlo");
-      await this.logIn();
     }
   }
 
@@ -377,6 +376,3 @@ export class Management {
     }
   }
 }
-
-const management = new Management();
-management.start();
