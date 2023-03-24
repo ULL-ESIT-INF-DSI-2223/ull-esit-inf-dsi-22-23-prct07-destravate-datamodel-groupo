@@ -975,6 +975,41 @@
             "idRoute": 102
           }
         ]
+      },
+      {
+        "id": 222,
+        "name": "pepe",
+        "activity": "correr",
+        "friends": [
+          201,
+          202
+        ],
+        "friendsGroup": [
+          201,
+          202
+        ],
+        "stats": {
+          "kmWeek": 6,
+          "slopeWeek": 5,
+          "kmMonth": null,
+          "slopeMonth": 2,
+          "kmYear": 1,
+          "slopeYear": 5
+        },
+        "favoriteRoutes": [
+          101,
+          102
+        ],
+        "activeChallenge": [
+          1,
+          3
+        ],
+        "routeHistory": [
+          {
+            "date": "12/05/2022",
+            "idRoute": 101
+          }
+        ]
       }
     ]
   },

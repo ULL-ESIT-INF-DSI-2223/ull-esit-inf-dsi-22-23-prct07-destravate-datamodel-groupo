@@ -10,11 +10,13 @@ import { UserCollection } from "./usersollection";
 import { inquirer } from "inquirer"
 import { lowdb } from "lowdb"
 
+import { routeHistory } from "./users";
+
 import { RouteCollection } from "./routescollection";
 import { GroupCollection } from "./groupcollection";
 import { Route } from "./route";
 import { Challenge } from "./challenge";
-import { User } from "./users";
+import { stats, User } from "./users";
 
 
 const challCol = new ChallengeCollection([chall1, chall2, chall3]);
@@ -214,6 +216,87 @@ const addRouteMenu = [
     name: 'rating',
     message: 'Introduzca la calificación media de la ruta: '
   }
+]
+
+const addUserMenu = [
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduzca el id del usuario: '
+  },
+  {
+    type: 'input',
+    name: 'name',
+    message: 'Introduzca el nombre del usuario: '
+  },
+  {
+    type: 'input',
+    name: 'activity',
+    message: 'Introduzca la actividad que realiza el usuario (correr o bicicleta): '
+  },
+  {
+    type: 'input',
+    name: 'friends',
+    message: 'Introduzca el id de los amigos del usuario separado por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  },
+  {
+    type: 'input',
+    name: 'kmweek',
+    message: 'Introduzca los km que realiza el usuario en la semana: '
+  },
+  {
+    type: 'input',
+    name: 'slopeweek',
+    message: 'Introduzca el desnivel que realiza el usuario en la semana: '
+  },
+  {
+    type: 'input',
+    name: 'kmmonth',
+    message: 'Introduzca los km que realiza el usuario en el mes: '
+  },
+  {
+    type: 'input',
+    name: 'slopemonth',
+    message: 'Introduzca el desnivel que realiza el usuario en el mes: '
+  },
+  {
+    type: 'input',
+    name: 'kmyear',
+    message: 'Introduzca los km que realiza el usuario en el año: '
+  },
+  {
+    type: 'input',
+    name: 'slopeyear',
+    message: 'Introduzca el desnivel que realiza el usuario en el año: '
+  },
+  {
+    type: 'input',
+    name: 'favoriteroutes',
+    message: 'Introduzca el id de las rutas favoritas separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  },
+  {
+    type: 'input',
+    name: 'activechall',
+    message: 'Introduzca el id de los retos activos separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  },
 ]
 
 const addChallMenu = [
@@ -622,7 +705,18 @@ const remove = [
               });
               break;
             case 'user':
+              inquirer.prompt(addUserMenu).then(answer => {
+                const friends = answer.friends.split(',').map((v) => Number(v.trim()));
+                const stats: stats = {kmWeek: Number(answer.kmweek), slopeWeek: Number(answer.slopeweek), kmMonth: Number(answer.kmmonth), slopeMonth: Number(answer.slopemonth), kmYear: Number(answer.kmyear), slopeYear: Number(answer.slopeyear)}
+                const froute = answer.favoriteroutes.split(',').map((v) => Number(v.trim()));
+                const actchall = answer.activechall.split(',').map((v) => Number(v.trim()));
 
+                const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}                
+
+                const newUser = new User(Number(answer.id), answer.name, answer.activity, friends, friends, stats, froute, actchall, [routeHistory1]);
+                userCol.addItem(newUser);
+                db.get('userCol.items').push(newUser).write();
+              });
               break;
 
             case 'group':
