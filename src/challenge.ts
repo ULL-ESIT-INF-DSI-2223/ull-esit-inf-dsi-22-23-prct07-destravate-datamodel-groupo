@@ -51,8 +51,8 @@ export class Challenge {
    */
   getTotalKms() {
     this.totalKms = 0;
-    for (let i = 0; i < this.routes.length; i++) {
-      this.totalKms += this.routes[i].length;
+    for (const element of this.routes) {
+      this.totalKms += element.length;
     }
     return this.totalKms;
   }

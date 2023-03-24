@@ -98,14 +98,14 @@ export class Route {
       }
     }
     const result = (`Id: ${this.id}
-Nombre: ${this.name}
-Geolocalización de inicio: ${this.startCoords.x}, ${this.startCoords.y}
-Geolocalización del final: ${this.endCoords.x}, ${this.endCoords.y}
-Longitud de la ruta: ${this.length} kilómetros
-Desnivel medio de la ruta: ${this.avarageSlope} metros
-Ids de los usuarios que han realizado la ruta: ${str}
-Actividad: ${this.activityType}
-Calificación media: ${this.rating}`);
-return result;
+    Nombre: ${this.name}
+    Geolocalización de inicio: ${this.startCoords.x}, ${this.startCoords.y}
+    Geolocalización del final: ${this.endCoords.x}, ${this.endCoords.y}
+    Longitud de la ruta: ${this.length} kilómetros
+    Desnivel medio de la ruta: ${this.avarageSlope} metros
+    Ids de los usuarios que han realizado la ruta: ${str}
+    Actividad: ${this.activityType}
+    Calificación media: ${this.rating}`);
+    return result;
   }
 }

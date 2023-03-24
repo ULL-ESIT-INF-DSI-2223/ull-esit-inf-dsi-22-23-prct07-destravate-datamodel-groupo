@@ -81,10 +81,18 @@ export class UserCollection extends Collection<User> {
     return this.items.length;
   }
 
+  /**
+   * Get a user by it's id
+   * @param id id of the user
+   * @returns a user find by it's id
+   */
   getUserbyId(id: number) {
     return this.items.find((user) => user.id === id);
   }
 
+  /**
+   * show all the users of the database
+   */
   showUsers() {
     this.items.forEach((user) => {
       console.log(user.id);

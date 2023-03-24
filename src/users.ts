@@ -1,5 +1,3 @@
-//type actividades = 'correr'|'bicicleta';
-
 export type stats = {
     kmWeek: number;
     slopeWeek: number;
@@ -14,81 +12,76 @@ export type routeHistory = {
     idRoute: number;
 }
 
+/**
+ * user's that are included in the system
+ */
 export class User {
+
+  /**
+   * User's constructor
+   * @param id User's id
+   * @param name User's name
+   * @param activity User's prefered activity
+   * @param friends User's friends
+   * @param friendsGroup User's Group
+   * @param stats User's stats
+   * @param favoriteRoutes User's favourite routes
+   * @param activeChallenge User's activities
+   * @param routeHistory User's histoy
+   */
   constructor(public id: number,public name: string,public activity: string,public friends: number[], public friendsGroup: number[], public stats: stats, public favoriteRoutes: number[], public activeChallenge: number[], public routeHistory: routeHistory[]) {
   }
     
 
-
-    addFriend(idFriend: number) {
-        this.friends.push(idFriend);
-    }
-    deleteFriend(idFriend: number) {
-        this.friends.splice(this.friends.indexOf(idFriend), 1);
-    }
-    
-
-
-    // crearGrupo(idGrupo: string, nombreGrupo: string, miembros: string[]) {
-    //     this.grupos[idGrupo] = miembros;
-    // }
-
-    // agregarRutaFavorita(rutaId: string) {
-    //     this.rutasFavoritas.push(rutaId);
-    // }
-
-    // agregarRutaHistorica(rutaId: number, fecha: Date) {
-    //     this.historicoRutas.push({ rutaId, fecha });
-    // }
-    
-    // obtenerKmPorPeriodo(periodo:string){
-    //     switch (periodo.toLowerCase()) {
-    //         case 'semana':
-    //             return this.estadisticas.kmSemana;
-    //         case 'mes':
-    //             return this.estadisticas.kmMes;
-    //         case 'año':
-    //             return this.estadisticas.kmAno;
-    //         default :
-    //             return undefined;
-    //     }
-    // }
-
-  // obtenerKmDesnivelPorPeriodo(periodo: string) {
-  //       switch (periodo.toLowerCase()) {
-  //           case 'semana':
-  //               return this.estadisticas.desnivelSemana;
-  //           case 'mes':
-  //               return this.estadisticas.desnivelMes;
-  //           case 'año':
-  //               return this.estadisticas.desnivelAno;
-  //           default :
-  //               return undefined;
-  //       }
-  //   }
-
-    getStats() {
-      return this.stats;
-    }
-
-    /**
-   * Get user name.
-   * @returns user name.
+  /**
+   * User's function to add a friend
+   * @param idFriend id of the friend
    */
-    getName() {
-      return this.name;
-    }
+  addFriend(idFriend: number) {
+      this.friends.push(idFriend);
+  }
+  /**
+   * User's function to delete a friend
+   * @param idFriend id of the friend
+   */
+  deleteFriend(idFriend: number) {
+      this.friends.splice(this.friends.indexOf(idFriend), 1);
+  }
+  
 
-  statsPrint() {
-    const result = (`  Kms en la semana: ${this.stats.kmWeek}
-  Desnivel en la semana: ${this.stats.slopeWeek} metros
-  Kms en el mes: ${this.stats.kmMonth}
-  Desnivel en el mes: ${this.stats.slopeMonth} metros
-  Kms en el año: ${this.stats.kmYear}
-  Desnivel en el año: ${this.stats.slopeYear} metros`)
-return result;
+  /**
+   * User function to get the stats
+   * @returns the stats of the user
+   */
+  getStats() {
+    return this.stats;
   }
 
+  /**
+ * Get user name.
+ * @returns user name.
+ */
+  getName() {
+    return this.name;
+  }
+
+  /**
+   * User's function to print the user's stats
+   * @returns a string with the user's stats
+   */
+  statsPrint() {
+    const result = (`  Kms en la semana: ${this.stats.kmWeek}
+    Desnivel en la semana: ${this.stats.slopeWeek} metros
+    Kms en el mes: ${this.stats.kmMonth}
+    Desnivel en el mes: ${this.stats.slopeMonth} metros
+    Kms en el año: ${this.stats.kmYear}
+    Desnivel en el año: ${this.stats.slopeYear} metros`)
+    return result;
+  }
+
+  /**
+   * user's function to print the history
+   */
   routeHistoryPrint() {
     let str = "";
     for (let i = 0; i < this.routeHistory.length; i++) {
@@ -100,6 +93,10 @@ return result;
     }
   }
   
+  /**
+   * user's function to print all the user's information
+   * @returns a string with the user's information
+   */
   print() {
     let str = "";
     let str2 = "";
@@ -134,36 +131,13 @@ return result;
       }
     }
     const result = (`Id: ${this.id}
-Nombre: ${this.name}
-Actividad: ${this.activity}
-Amigos: ${str}
-Grupos de amigos: ${str2}
-Estadísticas:\n${this.statsPrint()}
-Rutas favoritas: ${str3}
-Retos activos: ${str4}`)
-//Histórico de rutas: ${this.routeHistoryPrint()}`)
-return result;
+    Nombre: ${this.name}
+    Actividad: ${this.activity}
+    Amigos: ${str}
+    Grupos de amigos: ${str2}
+    Estadísticas:\n${this.statsPrint()}
+    Rutas favoritas: ${str3}
+    Retos activos: ${str4}`)
+    return result;
   }
 }
-
-// const stats1: stats = {
-//     kmWeek: 76,
-//     slopeWeek: 150,
-//     kmMonth: 210,
-//     slopeMonth: 500,
-//     kmYear: 1375,
-//     slopeYear: 7000
-// }
-
-// const routeHistory1: routeHistory = {
-//     date: "12/05/2022",
-//     idRoute: 101
-// }
-
-// const routeHistory2: routeHistory = {
-//     date: "23/07/2022",
-//     idRoute: 102
-// }
-
-// const prueba = new User(1, "prueba", "correr", [201, 202], [201, 202], stats1, [101, 102], [1, 3], [routeHistory1, routeHistory2])
-// console.log(prueba.print());

@@ -24,12 +24,18 @@ export class Management {
   private routes: RouteCollection;
   private groups: GroupCollection;
 
+  /**
+   * Management's class constructor
+   */
   constructor() {
     this.users = userCol;
     this.routes = routeCol;
     this.groups = groupCol;
   }
 
+  /**
+   * start function of the management class
+   */
   async start() {
     const answer = await inquirer.prompt({
       name: "option",
@@ -58,6 +64,9 @@ export class Management {
     await this.options();
   }
 
+  /**
+   * Function to select a management function
+   */
   async options() {
     const answer = await inquirer.prompt({
       name: "option",
@@ -111,6 +120,9 @@ export class Management {
     await this.options();
   }
 
+  /**
+   * Function to sign in the management
+   */
   async signIn() {
     const answer = await inquirer.prompt([
       {
@@ -156,6 +168,9 @@ export class Management {
     console.log("Usuario creado correctamente");
   }
 
+  /**
+   * Function to log in in the management
+   */
   async logIn() {
     const answer = await inquirer.prompt([
       {
@@ -175,6 +190,9 @@ export class Management {
     }
   }
 
+  /**
+   * Function to show the routes of the database and to choose one and show all his information
+   */
   async showRoutes() {
     routeCol.printNames();
 
@@ -195,11 +213,16 @@ export class Management {
       await this.showRoutes();
     }
   }
-
+  /**
+   * Function to show the database's users 
+   */
   async showUsers() {
     this.users.showUsers();
   }
 
+  /**
+   * Function to add a user as a Friend
+   */
   async addFriend() {
     const answer = await inquirer.prompt([
       {
@@ -224,6 +247,9 @@ export class Management {
     }
   }
 
+  /**
+   * Function to delete a user as a friend
+   */
   async deleteFriend() {
     const answer = await inquirer.prompt([
       {
@@ -248,10 +274,16 @@ export class Management {
     }
   }
 
+  /**
+   * Function that shows groups of the database
+   */
   async showGroups() {
     this.groups.showGroups();
   }
 
+  /**
+   * Function that make the user join a group
+   */
   async joinGroup() {
     const answer = await inquirer.prompt([
       {
@@ -270,6 +302,9 @@ export class Management {
     }
   }
 
+  /**
+   * Function that create a new group
+   */
   async createGroup() {
     const answer = await inquirer.prompt([
       {
@@ -301,6 +336,9 @@ export class Management {
     }
   }
 
+  /**
+   * Function that delete an existing group
+   */
   async deleteGroup() {
     const answer = await inquirer.prompt([
       {
