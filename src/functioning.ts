@@ -841,14 +841,67 @@ const modify = [
                 }  
               });
               break;
-
             case 'user':
+              inquirer.prompt(modify).then(answer => {  
+                if (db.get('userCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('userCol.items').remove({ id: Number(answer.id) }).write();
+                  inquirer.prompt(addUserMenu).then(answer => {
+                    const friends = answer.friends.split(',').map((v) => Number(v.trim()));
+                    const stats: stats = {kmWeek: Number(answer.kmweek), slopeWeek: Number(answer.slopeweek), kmMonth: Number(answer.kmmonth), slopeMonth: Number(answer.slopemonth), kmYear: Number(answer.kmyear), slopeYear: Number(answer.slopeyear)}
+                    const froute = answer.favoriteroutes.split(',').map((v) => Number(v.trim()));
+                    const actchall = answer.activechall.split(',').map((v) => Number(v.trim()));
+
+                    const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}                
+
+                    const newUser = new User(Number(answer.id), answer.name, answer.activity, friends, friends, stats, froute, actchall, [routeHistory1]);
+                    userCol.addItem(newUser);
+                    db.get('userCol.items').push(newUser).write();
+                  });
+                }
+              });
               break;
 
             case 'group':
-              break;
+              inquirer.prompt(modify).then(answer => {  
+                if (db.get('groupCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('groupCol.items').remove({ id: Number(answer.id) }).write();
+                  inquirer.prompt(addGroupMenu).then(answer => {
+                    const members = answer.members.split(',').map((v) => Number(v.trim()));
+                    const stats: stats = {kmWeek: Number(answer.kmweek), slopeWeek: Number(answer.slopeweek), kmMonth: Number(answer.kmmonth), slopeMonth: Number(answer.slopemonth), kmYear: Number(answer.kmyear), slopeYear: Number(answer.slopeyear)}
+                    const froute = answer.favroutes.split(',').map((v) => Number(v.trim()));                
 
+                    const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}                
+
+                    const newGroup = new Group(Number(answer.id), answer.name, members, stats, froute, routeHistory1);
+                    groupCol.addItem(newGroup);
+                    db.get('groupCol.items').push(newGroup).write();
+                  });
+                }
+              });
+              break;
             case 'challenge':
+              inquirer.prompt(modify).then(answer => {  
+                if (db.get('challCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('challCol.items').remove({ id: Number(answer.id) }).write();
+                  inquirer.prompt(addChallMenu).then(answer => {
+                    const vector2: Route[] = [];
+                    const vector3: User[] = [];
+                    const vector = answer.routes.split(',').map((v) => Number(v.trim()));
+                      for (let i = 0; i < vector.length; i++) {
+                        vector2.push(db.get('routeCol.items').find({ id: vector[i]}).value());
+                      }
+                    const vector5 = answer.users.split(',').map((v) => Number(v.trim()));
+
+                    for (let i = 0; i < vector5.length; i++) {
+                      vector3.push(db.get('userCol.items').find({id: vector5[i]}).value());
+                    }
+                  const newChall = new Challenge(Number(answer.id), answer.name, vector2, answer.activity, vector3);
+                
+                  challCol.addItem(newChall);
+                  db.get('challCol.items').push(newChall).write();
+                  });
+                }
+              });
               break;
           }
         });
