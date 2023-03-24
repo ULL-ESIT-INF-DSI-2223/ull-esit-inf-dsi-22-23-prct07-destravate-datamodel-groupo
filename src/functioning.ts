@@ -408,6 +408,14 @@ const remove = [
   }
 ]
 
+const modify = [
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Id del elemento que desea modificar: '
+  }
+]
+
   inquirer.prompt(questionsMenu).then(answer => {
     switch (answer.option) {
       case 'navegation':
@@ -813,14 +821,44 @@ const remove = [
         break;
 
       case 'modify':
+        inquirer.prompt(optionsMenu).then(answer => {
+          switch (answer.option) {
+            case 'route':
+              inquirer.prompt(modify).then(answer => {  
+                if (db.get('routeCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('routeCol.items').remove({ id: Number(answer.id) }).write();
+                  inquirer.prompt(addRouteMenu).then(answer => {
+                    const vector = answer.uids.split(',').map((v) => Number(v.trim()));
+                    const sCoords: coords = {x: Number(answer.scoordsx), y: Number(answer.scoordsy)};
+                    const eCoords: coords = {x: Number(answer.ecoordsx), y: Number(answer.ecoordsy)};
+                    const newRoute = new Route(Number(answer.id), answer.name, sCoords, eCoords, Number(answer.length), Number(answer.slope), vector, answer.activity, Number(answer.rating));
+                    
+                    routeCol.addItem(newRoute);
+                    db.get('routeCol.items').push(newRoute).write();
+                  });
+                } else {
+                  console.log("El elemento no está en la base de datos.")
+                }  
+              });
+              break;
+
+            case 'user':
+              break;
+
+            case 'group':
+              break;
+
+            case 'challenge':
+              break;
+          }
+        });
         break;
 
       case 'delete':
         inquirer.prompt(optionsMenu).then(answer => {
           switch (answer.option) {
             case 'route':            
-              inquirer.prompt(remove).then(answer => {  
-                console.log(answer.id)  
+              inquirer.prompt(remove).then(answer => {                  
                 if (db.get('routeCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('routeCol.items').remove({ id: Number(answer.id) }).write();
                 } else {
@@ -829,8 +867,7 @@ const remove = [
               });
               break;
             case 'user':
-              inquirer.prompt(remove).then(answer => {  
-                console.log(answer.id)  
+              inquirer.prompt(remove).then(answer => {                  
                 if (db.get('userCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('userCol.items').remove({ id: Number(answer.id) }).write();
                 } else {
@@ -839,8 +876,7 @@ const remove = [
               });
               break;
             case 'group':
-              inquirer.prompt(remove).then(answer => {  
-                console.log(answer.id)  
+              inquirer.prompt(remove).then(answer => {                  
                 if (db.get('groupCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('groupCol.items').remove({ id: Number(answer.id) }).write();
                 } else {
@@ -849,8 +885,7 @@ const remove = [
               });
               break;
             case 'challenge':
-              inquirer.prompt(remove).then(answer => {  
-                console.log(answer.id)  
+              inquirer.prompt(remove).then(answer => {                   
                 if (db.get('challCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('challCol.items').remove({ id: Number(answer.id) }).write();
                 } else {

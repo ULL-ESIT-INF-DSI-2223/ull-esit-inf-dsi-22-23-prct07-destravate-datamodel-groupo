@@ -31,7 +31,7 @@ describe("Management Test", () => {
   it("sign in error", async () => {
     const management = new Management();
     inquirer.prompt = () =>
-      Promise.resolve({id: 300});
+      Promise.resolve({id: 201, name: "Nacho", activity: "bici"});
     await management.signIn();
     expect(management.getUser()).to.be.undefined;
   });
@@ -68,11 +68,12 @@ describe("Management Test", () => {
     ]);
     sinon.assert.calledWith(
       consoleStub,
-      "Id: 101\nNombre: Teide\nGeolocalización de inicio: 28.4894, 16.3168\nGeolocalización del final: 28.4841, 16.2337\nLongitud de la ruta: 18 kilómetros\nDesnivel medio de la ruta: 1000 metros\nIds de los usuarios que han realizado la ruta: 201, 203, 207, 209\nActividad: bicicleta\nCalificación media: 9.8"
+      "Id: 101\n    Nombre: Teide\n    Geolocalización de inicio: 28.4894, 16.3168\n    Geolocalización del final: 28.4841, 16.2337\n    Longitud de la ruta: 18 kilómetros\n    Desnivel medio de la ruta: 1000 metros\n    Ids de los usuarios que han realizado la ruta: 201, 203, 207, 209\n    Actividad: bicicleta\n    Calificación media: 9.8"
     );
     promptStub.restore();
     consoleStub.restore();
   });
+  
 
   it("should print a route error", async () => {
     const management = new Management();
@@ -94,6 +95,7 @@ describe("Management Test", () => {
     promptStub.restore();
     consoleStub.restore();
   });
+
 
   it("should show all groups", async () => {
     const management = new Management();

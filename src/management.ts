@@ -26,28 +26,28 @@ export class Management {
 
 
   /**
-  * Getter for the user logged in the system
-  * @returns the user logged in the system
-  */
-  getUser() {
-    return this.user;
-  }
-
- /**
-  * Setter for the user logged in the system
-  * @param user the user logged in the system
-  */
-  setUser(user: User) {
-    this.user = user;
-  }
-
-  /**
    * Management's class constructor
    */
   constructor() {
     this.users = userCol;
     this.routes = routeCol;
     this.groups = groupCol;
+  }
+
+  /**
+   * Getter for the user logged in the system
+   * @returns the user logged in the system
+   */
+  getUser() {
+    return this.user;
+  }
+
+  /**
+   * Setter for the user logged in the system
+   * @param user the user logged in the system
+   */
+  setUser(user: User) {
+    this.user = user;
   }
 
   /**
@@ -68,9 +68,13 @@ export class Management {
     switch (answer.option) {
       case "Registrarse en el sistema":
         await this.signIn();
+        if(this.user === undefined)
+          await this.start();
         break;
       case "Iniciar sesión en el sistema":
         await this.logIn();
+        if(this.user === undefined)
+          await this.start();
         break;
       case "Salir":
         console.log("Hasta pronto");
@@ -129,8 +133,7 @@ export class Management {
         break;
       case "Salir":
         console.log("Hasta pronto");
-        break;
-
+        return;
       default:
         console.log("Opción no válida");
     }
@@ -158,8 +161,9 @@ export class Management {
         message: "Introduce tu actividad",
       },
     ]);
-    if (this.users.getUserbyId(answer.id)) {
+    if (this.users.getUserbyId(parseInt(answer.id))) {
       console.log("El usuario ya existe");
+      return;
     }
     const user = new User(
       answer.id,
@@ -222,10 +226,9 @@ export class Management {
     answer.id = parseInt(answer.id);
     const route = this.routes.getRouteById(answer.id);
     if (route) {
-      this.routes.getRouteById(answer.id).print();
+      console.log(this.routes.getRouteById(answer.id).print());
     } else {
-      console.log("la ruta no existe. Vuelve a intentarlo");
-      await this.showRoutes();
+      console.log("La ruta no existe.");
     }
   }
   /**
@@ -326,11 +329,6 @@ export class Management {
         name: "id",
         type: "input",
         message: "Introduce el id del grupo",
-      },
-      {
-        name: "name",
-        type: "input",
-        message: "Introduce el nombre del grupo",
       },
     ]);
     answer.id = parseInt(answer.id);
