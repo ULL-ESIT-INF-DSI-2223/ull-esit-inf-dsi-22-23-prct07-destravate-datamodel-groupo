@@ -25,6 +25,22 @@ export class Management {
   private groups: GroupCollection;
 
   /**
+   * Getter for the user logged in the system
+   * @returns the user logged in the system
+   */
+  getUser() {
+    return this.user;
+  }
+
+  /**
+   * Setter for the user logged in the system
+   * @param user the user logged in the system
+   */
+  setUser(user: User) {
+    this.user = user;
+  }
+
+  /**
    * Management's class constructor
    */
   constructor() {

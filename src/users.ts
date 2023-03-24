@@ -32,7 +32,6 @@ export class User {
   constructor(public id: number,public name: string,public activity: string,public friends: number[], public friendsGroup: number[], public stats: stats, public favoriteRoutes: number[], public activeChallenge: number[], public routeHistory: routeHistory[]) {
   }
     
-
   /**
    * User's function to add a friend
    * @param idFriend id of the friend
@@ -40,14 +39,14 @@ export class User {
   addFriend(idFriend: number) {
       this.friends.push(idFriend);
   }
+
   /**
    * User's function to delete a friend
    * @param idFriend id of the friend
    */
   deleteFriend(idFriend: number) {
       this.friends.splice(this.friends.indexOf(idFriend), 1);
-  }
-  
+  }  
 
   /**
    * User function to get the stats
@@ -58,9 +57,9 @@ export class User {
   }
 
   /**
- * Get user name.
- * @returns user name.
- */
+  * Get user name.
+  * @returns user name.
+  */
   getName() {
     return this.name;
   }

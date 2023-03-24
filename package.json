@@ -33,6 +33,7 @@
     "inquirer": "^6.5.2",
     "lowdb": "^1.0.0",
     "parseboolean": "^1.0.0",
-    "prompt-sync": "^4.2.0"
+    "prompt-sync": "^4.2.0",
+    "sinon": "^15.0.2"
   }
 }
