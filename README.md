@@ -720,7 +720,7 @@ Esto solo se realizará la primera vez para que queden guardadas en el _json_, d
 ## Clase Gestor
 Para la clase gestor también se ha hecho uso de _Inquirer.js_ lo que nos permite hacer uso de la linea de comandos interactiva para poder hacer operaciones de gestion en la base de datos que se indican en el enunciado, que son:
 /
-- Registrarse en el sistema. Los usuarios que se conectan por primera vez al sistema deberan registrarse en el mismo para crear un usuario nuevo con sus datos, ademas para que una persona pueda volver a conectarse y usar su usuario en el sistema tambien hemos implementado un metodo log in, que comprueba que estes registrado y si es asi te permite hacer uso de las funciones del sistema con tu usuario.
+*Registrarse en el sistema*. Los usuarios que se conectan por primera vez al sistema deberan registrarse en el mismo para crear un usuario nuevo con sus datos, ademas para que una persona pueda volver a conectarse y usar su usuario en el sistema tambien hemos implementado un metodo _log in_, que comprueba que estés registrado y si es así te permite hacer uso de las funciones del sistema con tu usuario.
 ```Typescript
 async signIn() {
   const answer = await inquirer.prompt([
@@ -786,8 +786,10 @@ async logIn() {
     }
   }
 ```
-
-- Visualizar todas las rutas existentes dentro del sistema. Este metodo imprime una lista por pantalla de todas las rutas con sus ids y luego nos permite escoger una de entre estas y mostrar todos sus datos.
+Ejemplo de funcionamiento:
+```
+```
+*Visualizar todas las rutas existentes dentro del sistema*. Este método imprime una lista por pantalla de todas las rutas con sus ids y luego nos permite escoger una de entre estas y mostrar todos sus datos.
 
 ```Typescript
 async showRoutes() {
@@ -811,8 +813,10 @@ async showRoutes() {
     }
 }
 ```
-
-- Unirse a un grupo existente. Este metodo añade al usuario dentro de un grupo ya existente haciendo uso del metodo del grupo _addUser()_.
+Ejemplo de funcionamiento:
+```
+```
+*Unirse a un grupo existente*. Este método añade al usuario dentro de un grupo ya existente haciendo uso del metodo del grupo _addUser()_.
 
 ```Typescript
 async joinGroup() {
@@ -833,8 +837,10 @@ async joinGroup() {
     }
 }
 ```
-
-- Visualizar, crear y borrar grupos. con estos metodos podemos ver los grupos que hay en el sistema, crear un nuevo grupo dentro del sistema o borrar los grupos que ya existan, esto ultimo teniendo en cuenta que solo se puede hacer si el usuario es el creador del grupo, para ello el grupo guarda el id de su creador, y solo si este coincide con el del usuario que lo va a borrar la operacion es permitida.
+Ejemplo de funcionamiento:
+```
+```
+*Visualizar, crear y borrar grupos*. Con estos métodos podemos ver los grupos que hay en el sistema, crear un nuevo grupo dentro del sistema o borrar los grupos que ya existan, esto último teniendo en cuenta que solo se puede hacer si el usuario es el creador del grupo, para ello el grupo guarda el id de su creador, y solo si este coincide con el del usuario que lo va a borrar la operación es permitida.
 
 ```Typescript
 async showGroups() {
@@ -891,7 +897,9 @@ async deleteGroup() {
       console.log("El grupo no existe");
     }
   }
-}
+```
+Ejemplo de funcionamiento:
+```
 ```
 
 Entre otras funciones que hemos creado y añadido dentro de esta clase con el fin de gestionar la información dentro del sistema.

@@ -112,12 +112,11 @@ return result;
       }
     }
     const result = (`Id: ${this.id}
-    Nombre: ${this.name}
-    Participantes: ${str}
-    Estadísticas:
-    ${this.statsPrint()}
-    Clasificación:
-    Rutas favoritas: ${str2}`)
+Nombre: ${this.name}
+Participantes: ${str}
+Estadísticas:\n${this.statsPrint()}
+Clasificación:
+Rutas favoritas: ${str2}`)
   return result;
   }
 

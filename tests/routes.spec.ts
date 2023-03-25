@@ -2,8 +2,8 @@ import "mocha";
 import { expect } from "chai";
 import { route1, route2, route3, route4, route5, route6, route7, route8, route9, route10 } from "../src/database";
 
-const print8 = ("Id: 108\nNombre: Bodegas\nGeolocalización de inicio: 28.4894, 16.3168\nGeolocalización del final: 28.4841, 16.2337\nLongitud de la ruta: 17 kilómetros\nDesnivel medio de la ruta: 500 metros\nIds de los usuarios que han realizado la ruta: 201, 217, 220\nActividad: bicicleta\nCalificación media: 6.2")
-const print5 = ("Id: 105\nNombre: Caldera\nGeolocalización de inicio: 28.4894, 16.3168\nGeolocalización del final: 28.4841, 16.2337\nLongitud de la ruta: 8 kilómetros\nDesnivel medio de la ruta: 400 metros\nIds de los usuarios que han realizado la ruta: 202, 213, 214, 216\nActividad: bicicleta\nCalificación media: 9.2")
+const print8 = ("Id: 108\n    Nombre: Bodegas\n    Geolocalización de inicio: 28.4894, 16.3168\n    Geolocalización del final: 28.4841, 16.2337\n    Longitud de la ruta: 17 kilómetros\n    Desnivel medio de la ruta: 500 metros\n    Ids de los usuarios que han realizado la ruta: 201, 217, 220\n    Actividad: bicicleta\n    Calificación media: 6.2")
+const print5 = ("Id: 105\n    Nombre: Caldera\n    Geolocalización de inicio: 28.4894, 16.3168\n    Geolocalización del final: 28.4841, 16.2337\n    Longitud de la ruta: 8 kilómetros\n    Desnivel medio de la ruta: 400 metros\n    Ids de los usuarios que han realizado la ruta: 202, 213, 214, 216\n    Actividad: bicicleta\n    Calificación media: 9.2")
 
 describe("getName() function test", () => {
   it("route1.getname() returns 'Teide'", () => {

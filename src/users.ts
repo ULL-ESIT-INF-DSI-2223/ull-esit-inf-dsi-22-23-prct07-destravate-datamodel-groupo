@@ -70,11 +70,11 @@ export class User {
    */
   statsPrint() {
     const result = (`  Kms en la semana: ${this.stats.kmWeek}
-    Desnivel en la semana: ${this.stats.slopeWeek} metros
-    Kms en el mes: ${this.stats.kmMonth}
-    Desnivel en el mes: ${this.stats.slopeMonth} metros
-    Kms en el año: ${this.stats.kmYear}
-    Desnivel en el año: ${this.stats.slopeYear} metros`)
+  Desnivel en la semana: ${this.stats.slopeWeek} metros
+  Kms en el mes: ${this.stats.kmMonth}
+  Desnivel en el mes: ${this.stats.slopeMonth} metros
+  Kms en el año: ${this.stats.kmYear}
+  Desnivel en el año: ${this.stats.slopeYear} metros`)
     return result;
   }
 
@@ -90,6 +90,7 @@ export class User {
         str += this.routeHistory[i]
       }
     }
+    return str;
   }
   
   /**
@@ -130,13 +131,13 @@ export class User {
       }
     }
     const result = (`Id: ${this.id}
-    Nombre: ${this.name}
-    Actividad: ${this.activity}
-    Amigos: ${str}
-    Grupos de amigos: ${str2}
-    Estadísticas:\n${this.statsPrint()}
-    Rutas favoritas: ${str3}
-    Retos activos: ${str4}`)
+Nombre: ${this.name}
+Actividad: ${this.activity}
+Amigos: ${str}
+Grupos de amigos: ${str2}
+Estadísticas:\n${this.statsPrint()}
+Rutas favoritas: ${str3}
+Retos activos: ${str4}`)
     return result;
   }
 }
