@@ -1192,8 +1192,6 @@ export const chall1 = new Challenge(1, "Tres Cumbres", [route1, route2, route5],
 export const chall2 = new Challenge(2, "Vuelta Tenerife", [route6, route4, route3, route7, route10], "corriendo", [user2, user4]);
 export const chall3 = new Challenge(3, "Estrellas", [route8, route9], "bicicleta", [user5, user6, user8, user9, user10]);
 ```
-\
-\
 Para probar el correcto funcionamiento de nuestro diseño hemos realizado en un fichero aparte (_functioning_) una línea de comandos interactiva mediante el uso del módulo _Inquirer.js_, complementado con el uso del paquete _Lowdb_ para lograr que persiste los cambios en la información de nuestra base de datos. Debido al extenso tamaño en cuanto a líneas se refiere del fichero, no se expondrá en este informe en su totalidad, aunque sí fragmentos para mostrar el funcionamiento.
 \
 \
@@ -1209,6 +1207,9 @@ db.defaults({userCol}).write();
 db.defaults({groupCol}).write();
 db.defaults({challCol}).write();
 ```
+werhr
+\
+\
 Esto solo se realizará la primera vez para que queden guardadas en el _json_, después eliminaremos las líneas _db.defaults...write()_ para que no se altere nuestra base de datos cada vez que ejecutamos el programa.
 \
 \
