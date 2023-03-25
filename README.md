@@ -1866,6 +1866,8 @@ All files               |   93.51 |    73.77 |     100 |   92.55 |
 ```
 Se ha incluido por primera vez en los informes de la asignatura la integración continua mediante GitHub Actions, pasando todos los test de forma satisfactoria y consiguiendo el siguiente _badge_:
 [![Test](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml)
+También se ha hecho la configuración de workflow de GitHub Actions para enviar la información de encubrimiento a Coveralls:
+[![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo?branch=main)
 
 ## Bibliografía
 [Guion de la práctica 7](https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/)\
