@@ -330,6 +330,11 @@ export class Management {
         type: "input",
         message: "Introduce el id del grupo",
       },
+      {
+        name: "name",
+        type: "input",
+        message: "Introduce el nombre del grupo",
+      },
     ]);
     answer.id = parseInt(answer.id);
     if (this.groups.getGroupById(answer.id))
@@ -364,7 +369,7 @@ export class Management {
     const group = this.groups.getGroupById(answer.id);
     if (group) {
       if (this.user.id === group.Owner) {
-        this.groups.removeItem(answer.id);
+        this.groups.removeById(answer.id);
         console.log("Grupo eliminado correctamente");
       } else {
         console.log("No eres el propietario del grupo");

@@ -277,7 +277,7 @@ describe("Management Test", () => {
   it("CreateGroup", async () => {
     const management = new Management();
     management.setUser(user1);
-    const answer = { id: 900 };
+    const answer = { id: 900, name: "Grupo 900" };
     const promptStub = sinon.stub(inquirer, "prompt").resolves(answer);
     const consoleStub = sinon.stub(console, "log");
 
@@ -289,6 +289,11 @@ describe("Management Test", () => {
         type: "input",
         message: "Introduce el id del grupo",
       },
+      {
+        name: "name",
+        type: "input",
+        message: "Introduce el nombre del grupo",
+      }
     ]);
     sinon.assert.calledWith(consoleStub, "Grupo creado correctamente");
     promptStub.restore();
@@ -298,7 +303,7 @@ describe("Management Test", () => {
   it("CreateGroup error", async () => {
     const management = new Management();
     management.setUser(user1);
-    const answer = { id: 301 };
+    const answer = { id: 301, name: "Grupo 301" };
     const promptStub = sinon.stub(inquirer, "prompt").resolves(answer);
     const consoleStub = sinon.stub(console, "log");
 
@@ -310,6 +315,11 @@ describe("Management Test", () => {
         type: "input",
         message: "Introduce el id del grupo",
       },
+      {
+        name: "name",
+        type: "input",
+        message: "Introduce el nombre del grupo",
+      }
     ]);
     sinon.assert.calledWith(consoleStub, "El grupo ya existe");
     promptStub.restore();

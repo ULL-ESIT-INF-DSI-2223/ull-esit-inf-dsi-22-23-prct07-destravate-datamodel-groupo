@@ -115,4 +115,8 @@ export class GroupCollection extends Collection<Group> {
     return this.items.find(group => group.Id === id);
   }
 
+  removeById(id: number) {
+    this.items = this.items.filter(group => group.Id !== id);
+  }
+
 }

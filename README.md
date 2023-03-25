@@ -1784,15 +1784,29 @@ Ejemplo de funcionamiento:
 - Crear Grupo:
 ```
 ? ¿Qué desea hacer? Crear grupo
-? Introduce el id del grupo 2
+? Introduce el id del grupo 25
+? Introduce el nombre del grupo BobCats
 Grupo creado correctamente
+? ¿Qué desea hacer? Ver grupos
+301 Los Caminantes
+302 Senderistas en Acción
+303 Exploradores de la Naturaleza
+304 Pasos de Montaña
+305 Andarines Aventureros
+25 BobCats
 ```
 
 - Borrar Grupo:
 ```
 ? ¿Qué desea hacer? Borrar grupo
-? Introduce el id del grupo 2
+? Introduce el id del grupo 25
 Grupo eliminado correctamente
+? ¿Qué desea hacer? Ver grupos
+301 Los Caminantes
+302 Senderistas en Acción
+303 Exploradores de la Naturaleza
+304 Pasos de Montaña
+305 Andarines Aventureros
 ```
 
 Entre otras funciones que hemos creado y añadido dentro de esta clase con el fin de gestionar la información dentro del sistema.
