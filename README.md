@@ -1864,13 +1864,15 @@ All files               |   93.51 |    73.77 |     100 |   92.55 |
  usersollection.ts      |     100 |      100 |     100 |     100 |                             
 ------------------------|---------|----------|---------|---------|-----------------------------
 ```
-Se ha incluido por primera vez en los informes de la asignatura la integración continua mediante GitHub Actions, pasando todos los test de forma satisfactoria y consiguiendo el siguiente _badge_:
+Se ha incluido por primera vez en los informes de la asignatura la integración continua mediante _GitHub Actions_, pasando todos los test de forma satisfactoria y consiguiendo el siguiente _badge_:
 [![Test](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml)
 \
 \
-También se ha hecho la configuración de workflow de GitHub Actions para enviar la información de encubrimiento a Coveralls:
+También se ha hecho la configuración de _workflow_ de _GitHub_ Actions para enviar la información de encubrimiento a _Coveralls_:
 [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo?branch=main)
-
+\
+\
+Por último también se ha probado la última herramienta propuesta en la asignatura para comprobar la calidad y seguridad del código, mediante _Sonar Cloud_ y _GitHub Action_, obteniendo el siguiente _badge_: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2223_ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ULL-ESIT-INF-DSI-2223_ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo)
 ## Bibliografía
 [Guion de la práctica 7](https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/)\
 [Documentación Inquirer.js](https://www.npmjs.com/package/inquirer#documentation)\
