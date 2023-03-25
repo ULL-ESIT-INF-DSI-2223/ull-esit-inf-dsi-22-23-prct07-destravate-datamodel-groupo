@@ -1213,10 +1213,10 @@ Esto solo se realizará la primera vez para que queden guardadas en el _json_, d
 \
 \
 Son cuatro las funciones que implementa este fichero:
-* Mostrar elemento (Ruta, Usuario, Grupo o Reto)
-* Añadir elemento
-* Modificar elemento
-* Borrar elemento
+Mostrar elemento (Ruta, Usuario, Grupo o Reto)
+Añadir elemento
+Modificar elemento
+Borrar elemento
 \
 \
 Es este informe no mostraremos todas las combinaciones posibles que se pueden realizar debido a su extensión, sin embargo, si mostraremos el correcto funcionamiento de cada una de ellas.
