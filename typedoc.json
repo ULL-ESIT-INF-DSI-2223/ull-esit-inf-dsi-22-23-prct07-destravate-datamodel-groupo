@@ -2,8 +2,7 @@
   "entryPoints": [
     "./src/challenge.ts",
     "./src/challengecollection.ts",
-    "./src/collection.ts",
-    "./src/functioning.ts",
+    "./src/collection.ts", 
     "./src/database.ts",
     "./src/group.ts",
     "./src/groupcollection.ts",

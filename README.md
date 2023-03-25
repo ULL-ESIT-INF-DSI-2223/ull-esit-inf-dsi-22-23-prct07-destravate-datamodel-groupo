@@ -6,8 +6,6 @@ Esta práctica se ha realizado en grupo por los siguientes alumnos:
 - Pablo de la Fuente Rodríguez (alu0101336152@ull.edu.es) 
 - José David Mur Álvarez (alu0101052168@ull.edu.es)
 - Carlos Pío Reyes (alu0101132945@ull.edu.es)
-/
-/
 ## Requisitos del sistema
 Para la creación de este sistema se proponen 4 elementos fundamentales: Rutas, Usuarios, Grupos y Retos.
 \
@@ -19,9 +17,11 @@ Estas cuatro clases son las siguientes:
 \
 \
 ### Routes
-Esta clase almacena una ruta en el sistema con los atributos definidos en el enunciado, ademas posee unos metodos para devolver esos valores y un metodo para imprimir esa información por pantalla.
-_Routes_:
+Esta clase almacena una ruta en el sistema con los atributos definidos en el enunciado, además posee unos métodos para devolver esos valores y un método para imprimir esa información por pantalla.
 ```TypeScript
+/**
+ * Routes that are include in the system.
+ */
 export class Route {
   private id: number;
   private name: string;
@@ -33,6 +33,17 @@ export class Route {
   private activityType: string;
   private rating: number;
 
+  /**
+   * Routes' constructor.
+   * @param id Route id.
+   * @param name Route name.
+   * @param startCoords Start geolocation. 
+   * @param endCoords End geolocation.
+   * @param length Routes length (Kms).
+   * @param avarageSlope Avarage slope of the route.
+   * @param activityType Indicate if the route can be completed by bike or running.
+   * @param rating Avarage route rating.
+   */
   constructor(id, name, startCoords, endCoords, length, avarageSlope, usersIds, activityType, rating) {
     this.id = id;
     this.name = name;
@@ -49,26 +60,50 @@ export class Route {
     return this.id;
   }
 
+  /**
+   * Get route name.
+   * @returns Route name.
+   */
   getName() {
     return this.name;
   }
 
+  /**
+   * Get amount of users.
+   * @returns users quantity.
+   */
   getUsersQuantity() {
     return this.usersIds.length;
   }
 
+  /**
+   * Get routes length (Kms).
+   * @returns Routes length (Kms).
+   */
   getLength() {
     return this.length;
   }
 
+  /**
+   * Get route activity.
+   * @returns Activity type.
+   */
   getActivityType() {
     return this.activityType;
   }
 
+  /**
+   * Get route rating.
+   * @returns Avarage route rating.
+   */
   getRating() {
     return this.rating;
   }
 
+  /**
+   * Print the route.
+   * @returns The string with the result.
+   */
   print() {
     let str = "";
     for (let i = 0; i < this.usersIds.length; i++) {
@@ -91,41 +126,104 @@ export class Route {
   }
 }
 ```
+Se han realizado las pruebas pertinentes:
+```
+  getName() function test
+    ✔ route1.getname() returns 'Teide'
+    ✔ route8.getname() returns 'Bodegas'
+
+  getUsersQuantity() function test
+    ✔ route2.getUsersQuantity() returns 2
+    ✔ route5.getUsersQuantity() returns 4
+
+  getLength() function test
+    ✔ route3.getLength() returns 8
+    ✔ route10.getLength() returns 2
+
+  getActivityType() function test
+    ✔ route3.getActivityType() returns 'corriendo'
+    ✔ route10.getActivityType() returns 'bicicleta'
+
+  getRating() function test
+    ✔ route7.getRating() returns 8.7
+    ✔ route9.getRating() returns 9.7
+
+  print() function test
+    ✔ route8.print() returns print8
+    ✔ route5.print() returns print5
+```
 ### Users
-Esta clase define un usuario del sistema, aparte de los atributos que se nos proporcionan y los metodos correspondientes para obtener esos datos, la clase user nos permite borrar o añadir usuarios a la lista de amigos y mostrar el historial de rutas.
-_Users_:
+Esta clase define un usuario del sistema, aparte de los atributos que se nos proporcionan y los metodos correspondientes para obtener esos datos, la clase user nos permite borrar o añadir usuarios a la lista de amigos.
 ```TypeScript
+/**
+ * user's that are included in the system
+ */
 export class User {
 
+  /**
+   * User's constructor
+   * @param id User's id
+   * @param name User's name
+   * @param activity User's prefered activity
+   * @param friends User's friends
+   * @param friendsGroup User's Group
+   * @param stats User's stats
+   * @param favoriteRoutes User's favourite routes
+   * @param activeChallenge User's activities
+   * @param routeHistory User's histoy
+   */
   constructor(public id: number,public name: string,public activity: string,public friends: number[], public friendsGroup: number[], public stats: stats, public favoriteRoutes: number[], public activeChallenge: number[], public routeHistory: routeHistory[]) {
   }
-  
+    
+  /**
+   * User's function to add a friend
+   * @param idFriend id of the friend
+   */
   addFriend(idFriend: number) {
       this.friends.push(idFriend);
   }
-  
+
+  /**
+   * User's function to delete a friend
+   * @param idFriend id of the friend
+   */
   deleteFriend(idFriend: number) {
       this.friends.splice(this.friends.indexOf(idFriend), 1);
-  }
-  
+  }  
+
+  /**
+   * User function to get the stats
+   * @returns the stats of the user
+   */
   getStats() {
     return this.stats;
   }
 
+  /**
+  * Get user name.
+  * @returns user name.
+  */
   getName() {
     return this.name;
   }
 
+  /**
+   * User's function to print the user's stats
+   * @returns a string with the user's stats
+   */
   statsPrint() {
     const result = (`  Kms en la semana: ${this.stats.kmWeek}
-    Desnivel en la semana: ${this.stats.slopeWeek} metros
-    Kms en el mes: ${this.stats.kmMonth}
-    Desnivel en el mes: ${this.stats.slopeMonth} metros
-    Kms en el año: ${this.stats.kmYear}
-    Desnivel en el año: ${this.stats.slopeYear} metros`)
+  Desnivel en la semana: ${this.stats.slopeWeek} metros
+  Kms en el mes: ${this.stats.kmMonth}
+  Desnivel en el mes: ${this.stats.slopeMonth} metros
+  Kms en el año: ${this.stats.kmYear}
+  Desnivel en el año: ${this.stats.slopeYear} metros`)
     return result;
   }
 
+  /**
+   * user's function to print the history
+   */
   routeHistoryPrint() {
     let str = "";
     for (let i = 0; i < this.routeHistory.length; i++) {
@@ -135,8 +233,13 @@ export class User {
         str += this.routeHistory[i]
       }
     }
+    return str;
   }
-
+  
+  /**
+   * user's function to print all the user's information
+   * @returns a string with the user's information
+   */
   print() {
     let str = "";
     let str2 = "";
@@ -171,21 +274,40 @@ export class User {
       }
     }
     const result = (`Id: ${this.id}
-    Nombre: ${this.name}
-    Actividad: ${this.activity}
-    Amigos: ${str}
-    Grupos de amigos: ${str2}
-    Estadísticas:\n${this.statsPrint()}
-    Rutas favoritas: ${str3}
-    Retos activos: ${str4}`)
+Nombre: ${this.name}
+Actividad: ${this.activity}
+Amigos: ${str}
+Grupos de amigos: ${str2}
+Estadísticas:\n${this.statsPrint()}
+Rutas favoritas: ${str3}
+Retos activos: ${str4}`)
     return result;
   }
 }
 ```
+Se han realizado las pruebas pertinentes:
+```
+  getStats() function test
+    ✔ user1.getStats() returns 'stats1'
+
+  getName() function test
+    ✔ user1.getName() returns 'Ana'
+
+  statsPrint() function test
+    ✔ user1.statsPrint() returns 'statsPrint1'
+
+  print() function test
+    ✔ user1.print() returns 'print1'
+
+  routeHistoryPrint() function test
+    ✔ user1.routeHistoryPrint() returns 'routeHistory'
+```
 ### Groups
-Esta clase representa un grupo de usuarios del sistema, con sus metodos podemos obtener sus atributos, mostrarlos por pantalla, mostrar los usuarios que componen el grupo y sus rutas favoritas y añadir usuarios al grupo.
-_Groups_:
+Esta clase representa un grupo de usuarios del sistema, con sus métodos podemos obtener sus atributos, mostrarlos por pantalla, mostrar los usuarios que componen el grupo y sus rutas favoritas y añadir usuarios al grupo.
 ```TypeScript
+/**
+ * Group that are included in the system.
+ */
 export class Group {
 
   private id: number;
@@ -196,6 +318,16 @@ export class Group {
   private routeHistory: routeHistory[];
   private owner: number;
 
+  /**
+   * Group class constructor
+   * @param id Group's id
+   * @param name Group's name
+   * @param members Group's members
+   * @param stats Group's stats 
+   * @param favoriteRoutes Group's favorites routes
+   * @param routeHistory Group's history
+   * @param owner Group's owner
+   */
   constructor(id, name, members, stats, favoriteRoutes, routeHistory, owner = 0) {
     this.id = id;
     this.name = name;
@@ -206,22 +338,42 @@ export class Group {
     this.owner = owner;
   }
 
+  /**
+   * Group's function to get the owner
+   * @return The group's owner
+   */
   get Owner() {
     return this.owner;
   }
 
+  /**
+   * Group's function to get the id of the group
+   * @return the id of the group
+  */
   get Id() {
     return this.id;
   }
 
+  /**
+   * Get the name of the group.
+   * @returns the name of the group.
+   */
   getName() {
     return this.name;
   }
 
+  /**
+   * Get the stats of the group.
+   * @returns the stats of the group.
+   */
   getStats() {
     return this.stats;
   }
 
+  /**
+   * Print the stats of the group.
+   * @returns The string with the result.
+   */
   statsPrint() {
     const result = (`  Kms en la semana: ${this.stats.kmWeek}
   Desnivel en la semana: ${this.stats.slopeWeek} metros
@@ -232,6 +384,10 @@ export class Group {
 return result;
   }
 
+  /**
+   * Print the group.
+   * @returns the result with the result.
+   */
   print() {
     let str = "";
     let str2 = "";
@@ -250,28 +406,58 @@ return result;
       }
     }
     const result = (`Id: ${this.id}
-    Nombre: ${this.name}
-    Participantes: ${str}
-    Estadísticas:
-    ${this.statsPrint()}
-    Clasificación:
-    Rutas favoritas: ${str2}`)
+Nombre: ${this.name}
+Participantes: ${str}
+Estadísticas:\n${this.statsPrint()}
+Clasificación:
+Rutas favoritas: ${str2}`)
   return result;
   }
 
+  /**
+   * Get the number of members that compose the group.
+   * @returns the number of members.
+   */
   getNumberOfMembers() {
     return this.members.length
   }
 
+  /**
+   * Group's function to add a new user
+   * @param user user to is going to be add to the group
+   */
   addUser(user: User) {
     this.members.push(user.id);
   }
 }
 ```
+Se han realizado las pruebas pertinentes:
+```
+  getName() function test
+    ✔ group1.getName() returns 'Los Caminantes'
+    ✔ group2.getName() returns 'Senderistas en Acción'
+
+  getStats() function test
+    ✔ group4.getStats() returns 'Los Caminantes'
+    ✔ group5.getStats() returns 'Senderistas en Acción'
+
+  getNumberOfMembers() function test
+    ✔ group4.getNumberOfMembers() returns 'Los Caminantes'
+    ✔ group5.getNumberOfMembers() returns 'Senderistas en Acción'
+
+  statsPrint() function test
+    ✔ group3.statsPrint() returns print3
+
+  print() function test
+    ✔ group3.print() returns print3
+```
 ### Challenges
-Este metodo que representa los retos del sistema, tiene metodos que nos devuelve sus atributos y un metodo que muestra toda la informacion del reto por pantalla.
+Esta clase que representa los retos del sistema, tiene métodos que nos devuelve sus atributos y un método que muestra toda la información del reto por pantalla.
 _Challenge_:
 ```TypeScript
+/**
+ * Challenges that are included in the system.
+ */
 export class Challenge {
   private id: number;
   private name: string;
@@ -280,6 +466,13 @@ export class Challenge {
   private totalKms: number;
   private users: User[];
 
+  /**
+   * Challenge's constructor.
+   * @param id Challenge id.
+   * @param name Challenge name.
+   * @param routes Routes that compose the challenge.
+   * @param activityType Indicate if the challenge can be completed by bike or running.
+   */
   constructor(id, name, routes, activityType, users) {
     this.id = id;
     this.name = name;
@@ -290,14 +483,26 @@ export class Challenge {
     this.users = users;
   }
 
+  /**
+   * Get number of users that are doing the challenge.
+   * @returns the number of user.
+   */
   getNumberofUser() {
     return this.users.length
   }
 
+  /**
+   * Get challenge name.
+   * @returns the challenge name.
+   */
   getName() {
     return this.name;
   }
 
+  /**
+   * Get total kms of the challenge.
+   * @returns total number of Kms.
+   */
   getTotalKms() {
     this.totalKms = 0;
     for (const element of this.routes) {
@@ -306,6 +511,10 @@ export class Challenge {
     return this.totalKms;
   }
 
+  /**
+   * Print the challenge.
+   * @returns The string with the result.
+   */
   print() {
     let str = "";
     for (let i = 0; i < this.routes.length; i++) {
@@ -333,32 +542,74 @@ Usuarios: ${str2}`);
   }  
 }
 ```
+Se han realizado las pruebas pertinentes:
+```
+  getName() function test
+    ✔ chall1.getName() returns 'Tres Cumbres'
+    ✔ chall2.getName() returns 'Vuelta Tenerife'
+
+  getTotalKms() function test
+    ✔ chall1.getTotalKms() returns 33
+    ✔ chall3.getTotalKms() returns 31
+
+  getNumberOfUser() function test
+    ✔ chall1.getNumberOfUser() returns 3
+    ✔ chall2.getNumberOfUser() returns 2
+
+  print() function test
+    ✔ chall1.print() returns print1
+    ✔ chall2.print() returns print2
+```
 Para posteriormente comprobar el funcionamiento se deberán de crear varios objetos distintos de las clases anteriormente mencionadas es por ello que hemos decidido organizarlo en colecciones. Comenzando por una clase abstracta _collection_ que es heredada por las colecciones del resto de elementos.
 \
 \
 _Collection_:
 ```TypeScript
-
+/**
+ * The abstract class collection of items. Generic class.
+ */
 export abstract class Collection<T> {
-  
+  /**
+   * Constructor's class.
+   * @param items Array of items of generic's type.
+   */
   constructor(protected items: T[]) {   
   }
 
+  /**
+   * Remove an item from the collection.
+   * @param index index of an item of the collection.
+   * @returns the removed item.
+   */
   removeItem(index: number): T {
       const removed = this.items[index];
       this.items.splice(index, 1);
       return removed;
   }
 
+  /**
+   * Add an item to the collection.
+   * @param newItem the new item to add to the collection.
+   * @returns True if the item was added.
+   */
   addItem(newItem: T) {
     this.items.push(newItem);  
     return true;
   }
 
+  /**
+   * Get an item to the collection.
+   * @param index index item to get from the collection.
+   * @returns the item selected.
+   */
   getItem(index: number): T {
     return this.items[index];
   }
 
+  /**
+   * Get the number of items from the collection.
+   * @returns the number of items.
+   */
   getNumberOfItems() {
     return this.items.length;
   }
@@ -369,7 +620,7 @@ Cómo podemos ver la clase _collection_ es una clase abstracta genérica que tie
 \
 Al igual que en el resto de clases se han realizado las pruebas pertinentes:
 ```
-removeItem() function test
+  removeItem() function test
     ✔ challCol.removeItem(0) returns [chall1]
 
   addItem() function test
