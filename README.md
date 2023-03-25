@@ -451,7 +451,6 @@ Se han realizado las pruebas pertinentes:
 ```
 ### Challenges
 Esta clase que representa los retos del sistema, tiene métodos que nos devuelve sus atributos y un método que muestra toda la información del reto por pantalla.
-_Challenge_:
 ```TypeScript
 /**
  * Challenges that are included in the system.
@@ -628,8 +627,8 @@ Al igual que en el resto de clases se han realizado las pruebas pertinentes:
   getNumberOfItems() function test
     ✔ challCol.getNumberOfItems() returns 3
 ```
-Ademas se ha creado una serie de clases hijas de _collection_ que aparte de los metodos arriba mostrado poseen una serie de metodos que permiten organizar los elementos dentro de la coleccion por los distintos parametros que se han indicado en la practica.
-El resto de clases _collection_ que heredan de la anterior son las siguientes:
+Además se han creado una serie de clases hijas de _collection_ que poseen una serie de métodos que permiten organizar los elementos dentro de cada una de las colecciones por los distintos parámetros que se han indicado en la práctica.\
+Las clases _collection_ que heredan de la anterior son las siguientes:
 ### RoutesCollection:
 ```TypeScript
 /**
