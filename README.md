@@ -1845,7 +1845,26 @@ También se han hecho una serie de pruebas para la clase gestor:
 La realización de esta práctica en grupo nos ha permitido aunar todos los conocimientos que hemos adquirido en la asginatura hasta este punto, con la adición de dos herramientos de gran utilidad como lo son _Inquirer.js_ y _Lowdb_. La primera de ellas permitiendonos crear una línea de comandos interactiva de una forma mucho más cómod que usando simplemente _prompt()_ y la segunda nos da la opción de modificar los objetos que se encuentran un una base de datos (_json_), consiguiendo así guardar los cambios y estos no hagan _reset_ cada vez que ejecutamos el programa.
 \
 \
-Github Actions.
+También hemos incluido las herramientas que aprendidas durante todas estas últimas prácticas, como lo es el cubrimiento con Instanbul:
+```
+------------------------|---------|----------|---------|---------|-----------------------------
+File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s           
+------------------------|---------|----------|---------|---------|-----------------------------
+All files               |   93.51 |    73.77 |     100 |   92.55 |                             
+ challenge.ts           |     100 |      100 |     100 |     100 |                             
+ challengecollection.ts |     100 |      100 |     100 |     100 |                             
+ collection.ts          |     100 |      100 |     100 |     100 |                             
+ database.ts            |     100 |      100 |     100 |     100 |                             
+ group.ts               |     100 |      100 |     100 |     100 |                             
+ groupcollection.ts     |     100 |      100 |     100 |     100 |                             
+ management.ts          |   77.23 |       60 |     100 |   77.23 | 70-78,83-85,111-133,138-140 
+ route.ts               |     100 |      100 |     100 |     100 |                             
+ routescollection.ts    |     100 |      100 |     100 |     100 |                             
+ users.ts               |     100 |      100 |     100 |     100 |                             
+ usersollection.ts      |     100 |      100 |     100 |     100 |                             
+------------------------|---------|----------|---------|---------|-----------------------------
+```
+Se ha incluido por primera vez en los informes de la asignatura la integración continua mediante GitHub Actions, pasando todos los test de forma satisfactoria y consiguiendo el siguiente _badge_:
 [![Test](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml)
 
 ## Bibliografía
