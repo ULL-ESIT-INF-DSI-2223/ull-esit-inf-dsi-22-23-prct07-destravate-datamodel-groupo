@@ -1,7 +1,7 @@
 import { route1, route2, route3, route4, route5, route6, route7, route8, route9, route10} from "./database"
 import { user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16, user17, user18, user19, user20} from "./database"
 import { group1, group2, group3, group4, group5 } from "./database";
-import { chall1, chall2, chall3 } from "./database";
+import { chall1, chall2, chall3} from "./database";
 import { ChallengeCollection } from "./challengecollection";
 import { coords } from "./route";
 
@@ -9,12 +9,15 @@ import { UserCollection } from "./usersollection";
 
 import { inquirer } from "inquirer"
 import { lowdb } from "lowdb"
+import { Group } from "./group"
+
+import { routeHistory } from "./users";
 
 import { RouteCollection } from "./routescollection";
 import { GroupCollection } from "./groupcollection";
 import { Route } from "./route";
 import { Challenge } from "./challenge";
-import { User } from "./users";
+import { stats, User } from "./users";
 
 
 const challCol = new ChallengeCollection([chall1, chall2, chall3]);
@@ -211,6 +214,152 @@ const addRouteMenu = [
   }
 ]
 
+const addUserMenu = [
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduzca el id del usuario: '
+  },
+  {
+    type: 'input',
+    name: 'name',
+    message: 'Introduzca el nombre del usuario: '
+  },
+  {
+    type: 'input',
+    name: 'activity',
+    message: 'Introduzca la actividad que realiza el usuario (correr o bicicleta): '
+  },
+  {
+    type: 'input',
+    name: 'friends',
+    message: 'Introduzca el id de los amigos del usuario separado por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  },
+  {
+    type: 'input',
+    name: 'kmweek',
+    message: 'Introduzca los km que realiza el usuario en la semana: '
+  },
+  {
+    type: 'input',
+    name: 'slopeweek',
+    message: 'Introduzca el desnivel que realiza el usuario en la semana: '
+  },
+  {
+    type: 'input',
+    name: 'kmmonth',
+    message: 'Introduzca los km que realiza el usuario en el mes: '
+  },
+  {
+    type: 'input',
+    name: 'slopemonth',
+    message: 'Introduzca el desnivel que realiza el usuario en el mes: '
+  },
+  {
+    type: 'input',
+    name: 'kmyear',
+    message: 'Introduzca los km que realiza el usuario en el año: '
+  },
+  {
+    type: 'input',
+    name: 'slopeyear',
+    message: 'Introduzca el desnivel que realiza el usuario en el año: '
+  },
+  {
+    type: 'input',
+    name: 'favoriteroutes',
+    message: 'Introduzca el id de las rutas favoritas separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  },
+  {
+    type: 'input',
+    name: 'activechall',
+    message: 'Introduzca el id de los retos activos separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  },
+]
+
+const addGroupMenu = [
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduzca el id del grupo: '
+  },
+  {
+    type: 'input',
+    name: 'name',
+    message: 'Introduzca el name del grupo: '
+  },
+  {
+    type: 'input',
+    name: 'members',
+    message: 'Introduzca el id de los miembros del grupo separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  },
+  {
+    type: 'input',
+    name: 'kmweek',
+    message: 'Introduzca los km que realiza el grupo en la semana: '
+  },
+  {
+    type: 'input',
+    name: 'slopeweek',
+    message: 'Introduzca el desnivel que realiza el grupo en la semana: '
+  },
+  {
+    type: 'input',
+    name: 'kmmonth',
+    message: 'Introduzca los km que realiza el grupo en el mes: '
+  },
+  {
+    type: 'input',
+    name: 'slopemonth',
+    message: 'Introduzca el desnivel que realiza el grupo en el mes: '
+  },
+  {
+    type: 'input',
+    name: 'kmyear',
+    message: 'Introduzca los km que realiza el grupo en el año: '
+  },
+  {
+    type: 'input',
+    name: 'slopeyear',
+    message: 'Introduzca el desnivel que realiza el grupo en el año: '
+  },
+  {
+    type: 'input',
+    name: 'favroutes',
+    message: 'Introduzca el id de las rutas favoritas del grupo separados por comas: ',
+    validate: function (value) {
+      if (value.trim().length === 0) {
+        return 'Introduzca al menos un valor separado por comas';
+      }
+      return true;
+    }
+  }
+]
+
 const addChallMenu = [
   {
     type: 'input',
@@ -256,6 +405,14 @@ const remove = [
     type: 'input',
     name: 'id',
     message: 'Id del elemento que desea borrar: '
+  }
+]
+
+const modify = [
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Id del elemento que desea modificar: '
   }
 ]
 
@@ -612,10 +769,32 @@ const remove = [
               });
               break;
             case 'user':
+              inquirer.prompt(addUserMenu).then(answer => {
+                const friends = answer.friends.split(',').map((v) => Number(v.trim()));
+                const stats: stats = {kmWeek: Number(answer.kmweek), slopeWeek: Number(answer.slopeweek), kmMonth: Number(answer.kmmonth), slopeMonth: Number(answer.slopemonth), kmYear: Number(answer.kmyear), slopeYear: Number(answer.slopeyear)}
+                const froute = answer.favoriteroutes.split(',').map((v) => Number(v.trim()));
+                const actchall = answer.activechall.split(',').map((v) => Number(v.trim()));
 
+                const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}                
+
+                const newUser = new User(Number(answer.id), answer.name, answer.activity, friends, friends, stats, froute, actchall, [routeHistory1]);
+                userCol.addItem(newUser);
+                db.get('userCol.items').push(newUser).write();
+              });
               break;
 
             case 'group':
+              inquirer.prompt(addGroupMenu).then(answer => {
+                const members = answer.members.split(',').map((v) => Number(v.trim()));
+                const stats: stats = {kmWeek: Number(answer.kmweek), slopeWeek: Number(answer.slopeweek), kmMonth: Number(answer.kmmonth), slopeMonth: Number(answer.slopemonth), kmYear: Number(answer.kmyear), slopeYear: Number(answer.slopeyear)}
+                const froute = answer.favroutes.split(',').map((v) => Number(v.trim()));                
+
+                const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}                
+
+                const newGroup = new Group(Number(answer.id), answer.name, members, stats, froute, routeHistory1);
+                groupCol.addItem(newGroup);
+                db.get('groupCol.items').push(newGroup).write();
+              });
               break;
 
             case 'challenge':
@@ -642,14 +821,97 @@ const remove = [
         break;
 
       case 'modify':
+        inquirer.prompt(optionsMenu).then(answer => {
+          switch (answer.option) {
+            case 'route':
+              inquirer.prompt(modify).then(answer => {  
+                if (db.get('routeCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('routeCol.items').remove({ id: Number(answer.id) }).write();
+                  inquirer.prompt(addRouteMenu).then(answer => {
+                    const vector = answer.uids.split(',').map((v) => Number(v.trim()));
+                    const sCoords: coords = {x: Number(answer.scoordsx), y: Number(answer.scoordsy)};
+                    const eCoords: coords = {x: Number(answer.ecoordsx), y: Number(answer.ecoordsy)};
+                    const newRoute = new Route(Number(answer.id), answer.name, sCoords, eCoords, Number(answer.length), Number(answer.slope), vector, answer.activity, Number(answer.rating));
+                    
+                    routeCol.addItem(newRoute);
+                    db.get('routeCol.items').push(newRoute).write();
+                  });
+                } else {
+                  console.log("El elemento no está en la base de datos.")
+                }  
+              });
+              break;
+            case 'user':
+              inquirer.prompt(modify).then(answer => {  
+                if (db.get('userCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('userCol.items').remove({ id: Number(answer.id) }).write();
+                  inquirer.prompt(addUserMenu).then(answer => {
+                    const friends = answer.friends.split(',').map((v) => Number(v.trim()));
+                    const stats: stats = {kmWeek: Number(answer.kmweek), slopeWeek: Number(answer.slopeweek), kmMonth: Number(answer.kmmonth), slopeMonth: Number(answer.slopemonth), kmYear: Number(answer.kmyear), slopeYear: Number(answer.slopeyear)}
+                    const froute = answer.favoriteroutes.split(',').map((v) => Number(v.trim()));
+                    const actchall = answer.activechall.split(',').map((v) => Number(v.trim()));
+
+                    const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}                
+
+                    const newUser = new User(Number(answer.id), answer.name, answer.activity, friends, friends, stats, froute, actchall, [routeHistory1]);
+                    userCol.addItem(newUser);
+                    db.get('userCol.items').push(newUser).write();
+                  });
+                }
+              });
+              break;
+
+            case 'group':
+              inquirer.prompt(modify).then(answer => {  
+                if (db.get('groupCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('groupCol.items').remove({ id: Number(answer.id) }).write();
+                  inquirer.prompt(addGroupMenu).then(answer => {
+                    const members = answer.members.split(',').map((v) => Number(v.trim()));
+                    const stats: stats = {kmWeek: Number(answer.kmweek), slopeWeek: Number(answer.slopeweek), kmMonth: Number(answer.kmmonth), slopeMonth: Number(answer.slopemonth), kmYear: Number(answer.kmyear), slopeYear: Number(answer.slopeyear)}
+                    const froute = answer.favroutes.split(',').map((v) => Number(v.trim()));                
+
+                    const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}                
+
+                    const newGroup = new Group(Number(answer.id), answer.name, members, stats, froute, routeHistory1);
+                    groupCol.addItem(newGroup);
+                    db.get('groupCol.items').push(newGroup).write();
+                  });
+                }
+              });
+              break;
+            case 'challenge':
+              inquirer.prompt(modify).then(answer => {  
+                if (db.get('challCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+                  db.get('challCol.items').remove({ id: Number(answer.id) }).write();
+                  inquirer.prompt(addChallMenu).then(answer => {
+                    const vector2: Route[] = [];
+                    const vector3: User[] = [];
+                    const vector = answer.routes.split(',').map((v) => Number(v.trim()));
+                      for (let i = 0; i < vector.length; i++) {
+                        vector2.push(db.get('routeCol.items').find({ id: vector[i]}).value());
+                      }
+                    const vector5 = answer.users.split(',').map((v) => Number(v.trim()));
+
+                    for (let i = 0; i < vector5.length; i++) {
+                      vector3.push(db.get('userCol.items').find({id: vector5[i]}).value());
+                    }
+                  const newChall = new Challenge(Number(answer.id), answer.name, vector2, answer.activity, vector3);
+                
+                  challCol.addItem(newChall);
+                  db.get('challCol.items').push(newChall).write();
+                  });
+                }
+              });
+              break;
+          }
+        });
         break;
 
       case 'delete':
         inquirer.prompt(optionsMenu).then(answer => {
           switch (answer.option) {
             case 'route':            
-              inquirer.prompt(remove).then(answer => {  
-                console.log(answer.id)  
+              inquirer.prompt(remove).then(answer => {                  
                 if (db.get('routeCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('routeCol.items').remove({ id: Number(answer.id) }).write();
                 } else {
@@ -658,8 +920,7 @@ const remove = [
               });
               break;
             case 'user':
-              inquirer.prompt(remove).then(answer => {  
-                console.log(answer.id)  
+              inquirer.prompt(remove).then(answer => {                  
                 if (db.get('userCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('userCol.items').remove({ id: Number(answer.id) }).write();
                 } else {
@@ -668,8 +929,7 @@ const remove = [
               });
               break;
             case 'group':
-              inquirer.prompt(remove).then(answer => {  
-                console.log(answer.id)  
+              inquirer.prompt(remove).then(answer => {                  
                 if (db.get('groupCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('groupCol.items').remove({ id: Number(answer.id) }).write();
                 } else {
@@ -678,8 +938,7 @@ const remove = [
               });
               break;
             case 'challenge':
-              inquirer.prompt(remove).then(answer => {  
-                console.log(answer.id)  
+              inquirer.prompt(remove).then(answer => {                   
                 if (db.get('challCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
                   db.get('challCol.items').remove({ id: Number(answer.id) }).write();
                 } else {
