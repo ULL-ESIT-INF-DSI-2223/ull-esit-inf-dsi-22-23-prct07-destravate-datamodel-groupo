@@ -1491,6 +1491,7 @@ La realización de esta práctica en grupo nos ha permitido aunar todos los cono
 \
 \
 Github Actions.
+[![Test](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml)
 
 ## Bibliografía
 [Guion de la práctica 7](https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/)\
