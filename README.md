@@ -14,7 +14,6 @@ Para cada uno de estos elementos se ha creado su correspondiente clase, con los 
 \
 \
 Estas cuatro clases son las siguientes:
-\
 ### Routes
 Esta clase almacena una ruta en el sistema con los atributos definidos en el enunciado, además posee unos métodos para devolver esos valores y un método para imprimir esa información por pantalla.
 ```TypeScript
