@@ -1224,7 +1224,7 @@ Son cuatro las funciones que implementa este fichero:
 \
 Es este informe no mostraremos todas las combinaciones posibles que se pueden realizar debido a su extensión, sin embargo, si mostraremos el correcto funcionamiento de cada una de ellas.
 ### Mostrar Elemento
-Es el guion de la práctica se nos pide poder ordenar los elementos de las colecciones de múltiples formas distintas, para esto se hace uso de los métodos declarados anteriormente en cada una de las colecciones. A continuación veremos un ejemplo de ello:
+En el guion de la práctica se nos pide poder ordenar los elementos de las colecciones de múltiples formas distintas, para esto se hace uso de los métodos declarados anteriormente en cada una de las colecciones. A continuación veremos un ejemplo de ello:
 ```
 ? ¿Qué quiere hacer? Mostrar elemento
 ? ¿Qué elemento desea elegir? Retos
@@ -1251,7 +1251,7 @@ Actividad: corriendo
 Kms: 41
 Usuarios: Juan, Luis
 ```
-Podemos ver como se muestran los retos ordenado de forma ascendente en cuanto a los Kms que se deben realizar se refiere.
+Podemos ver como se muestran los retos ordenados de forma ascendente en cuanto a los Kms que se deben realizar se refiere.
 ## Clase Gestor
 Para la clase gestor también se ha hecho uso de _Inquirer.js_ lo que nos permite hacer uso de la linea de comandos interactiva para poder hacer operaciones de gestion en la base de datos que se indican en el enunciado, que son:
 \
