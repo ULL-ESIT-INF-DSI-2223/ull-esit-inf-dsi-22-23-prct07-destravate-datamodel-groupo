@@ -1326,7 +1326,19 @@ Para la clase gestor también se ha hecho uso de _Inquirer.js_ lo que nos permit
   }
 ```
 Ejemplo de funcionamiento:
+ - Sign In:
 ```
+? ¿Qué desea hacer? Registrarse en el sistema
+? Introduce tu id 500
+? Introduce tu nombre Alberto
+? Introduce tu actividad Correr
+Usuario creado correctamente
+```
+- Log In:
+```
+? ¿Qué desea hacer? Iniciar sesión en el sistema
+? Introduce tu id 201
+Bienvenido
 ```
 **Visualizar todas las rutas existentes dentro del sistema**. Este método imprime una lista por pantalla de todas las rutas con sus ids y luego nos permite escoger una de entre estas y mostrar todos sus datos.
 
@@ -1356,7 +1368,135 @@ Ejemplo de funcionamiento:
 ```
 Ejemplo de funcionamiento:
 ```
+? ¿Qué desea hacer? Ver rutas
+101 Teide
+102 Sentidos
+103 Lavas
+104 Acantilados
+105 Caldera
+106 Guanches
+107 Bosques
+108 Bodegas
+109 Molinos
+110 Pueblos
+? Introduce el numero de la ruta de la que quieres obtener informacion: 101
+Id: 101
+    Nombre: Teide
+    Geolocalización de inicio: 28.4894, 16.3168
+    Geolocalización del final: 28.4841, 16.2337
+    Longitud de la ruta: 18 kilómetros
+    Desnivel medio de la ruta: 1000 metros
+    Ids de los usuarios que han realizado la ruta: 201, 203, 207, 209
+    Actividad: bicicleta
+    Calificación media: 9.8
 ```
+**Ver usuarios**. Este metodo nos permite ver todos los usuarios del sistema haciendo uso del metodo _showUsers()_ de **UsersCollection**.
+```Typescript
+/**
+   * Function to show the database's users 
+   */
+  async showUsers() {
+    this.users.showUsers();
+  }
+```
+
+Ejemplo de Funcionamiento:
+```
+? ¿Qué desea hacer? Ver usuarios
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+```
+
+**Añadir y borrar amigos**. Con estos dos metodos podemos añadir y borrar amigos, en los dos casos comprobando que el usuario al que queremos
+añadir o borrar existe y no se encuentre o se encuentre en nuestra lista de amigos, respectivamente.
+```Typescript
+/**
+   * Function to add a user as a Friend
+   */
+  async addFriend() {
+    const answer = await inquirer.prompt([
+      {
+        name: "id",
+        type: "input",
+        message: "Introduce el id del usuario que quieres añadir como amigo",
+      },
+    ]);
+    answer.id = parseInt(answer.id);
+    const user = this.users.getUserbyId(answer.id);
+    if (user) {
+      if (this.user.friends.includes(answer.id)) {
+        console.log("Ya eres amigo de este usuario");
+        return;
+      } else {
+        this.user.addFriend(answer.id);
+        user.addFriend(this.user.id);
+        console.log("Amigo añadido correctamente");
+      }
+    } else {
+      console.log("El usuario no existe");
+    }
+  }
+
+  /**
+   * Function to delete a user as a friend
+   */
+  async deleteFriend() {
+    const answer = await inquirer.prompt([
+      {
+        name: "id",
+        type: "input",
+        message: "Introduce el id del usuario que quieres eliminar como amigo",
+      },
+    ]);
+    answer.id = parseInt(answer.id);
+    const user = this.users.getUserbyId(answer.id);
+    if (user) {
+      if (!this.user.friends.includes(answer.id)) {
+        console.log("No eres amigo de este usuario");
+        return;
+      } else {
+        this.user.deleteFriend(answer.id);
+        user.deleteFriend(this.user.id);
+        console.log("Amigo eliminado correctamente");
+      }
+    } else {
+      console.log("El usuario no existe");
+    }
+  }
+```
+
+Ejemplo de Funcionamiento:
+```
+? ¿Qué desea hacer? Añadir amigo
+? Introduce el id del usuario que quieres añadir como amigo 202
+Ya eres amigo de este usuario
+? ¿Qué desea hacer? Añadir amigo
+? Introduce el id del usuario que quieres añadir como amigo 219
+Amigo añadido correctamente
+
+? ¿Qué desea hacer? Borrar amigo
+? Introduce el id del usuario que quieres eliminar como amigo 202
+Amigo eliminado correctamente
+```
+
 **Unirse a un grupo existente**. Este método añade al usuario dentro de un grupo ya existente haciendo uso del metodo del grupo _addUser()_.
 
 ```Typescript
@@ -1383,6 +1523,9 @@ Ejemplo de funcionamiento:
 ```
 Ejemplo de funcionamiento:
 ```
+? ¿Qué desea hacer? Unirse a grupo
+? Introduce el id del grupo al que quieres unirte 301
+Te has unido al grupo correctamente
 ```
 **Visualizar, crear y borrar grupos**. Con estos métodos podemos ver los grupos que hay en el sistema, crear un nuevo grupo dentro del sistema o borrar los grupos que ya existan, esto último teniendo en cuenta que solo se puede hacer si el usuario es el creador del grupo, para ello el grupo guarda el id de su creador, y solo si este coincide con el del usuario que lo va a borrar la operación es permitida.
 
@@ -1449,20 +1592,39 @@ Ejemplo de funcionamiento:
   }
 ```
 Ejemplo de funcionamiento:
+- Ver Grupos:
 ```
+? ¿Qué desea hacer? Ver grupos
+301 Los Caminantes
+302 Senderistas en Acción
+303 Exploradores de la Naturaleza
+304 Pasos de Montaña
+305 Andarines Aventureros
 ```
+
+- Crear Grupo:
+```
+? ¿Qué desea hacer? Crear grupo
+? Introduce el id del grupo 2
+Grupo creado correctamente
+```
+
+- Borrar Grupo:
+```
+? ¿Qué desea hacer? Borrar grupo
+? Introduce el id del grupo 2
+Grupo eliminado correctamente
+```
+
 Entre otras funciones que hemos creado y añadido dentro de esta clase con el fin de gestionar la información dentro del sistema.
 \
 \
 También se han hecho una serie de pruebas para la clase gestor:
 ```
-Bienvenido
+  Management Test
     ✔ log in
-El usuario no existe. Vuelve a intentarlo
     ✔ log in error
-Usuario creado correctamente
     ✔ sign in
-El usuario ya existe
     ✔ sign in error
     ✔ should show all users
     ✔ should print a route

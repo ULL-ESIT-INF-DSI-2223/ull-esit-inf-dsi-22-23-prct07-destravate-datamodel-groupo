@@ -374,3 +374,6 @@ export class Management {
     }
   }
 }
+
+const management = new Management();
+management.start();
