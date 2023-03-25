@@ -1149,8 +1149,6 @@ Para comprobar el funcionamiento de las clases anteriormente implementadas se ha
 - 20 usuarios.
 - 5 grupos.
 - 3 retos.
-\
-\
 ### Database:
 ```TypeScript
 export const route1 = new Route(101, "Teide", sCoords, eCoords, 18, 1000, [201, 203, 207, 209], "bicicleta", 9.8);
