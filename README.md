@@ -1323,6 +1323,112 @@ case 'challenge':
   break;
 ```
 Consiste en ir creando el objeto en base a las respuestas de usuario por la línea de comandos interactiva para posteriormente añadirlas a la base de datos.
+### Modificar Elemento
+Este opción nos da la posibilidad de elgir uno de los elementos existentes en la base de datos y modificar sus atributos. Un ejemplo es el siguiente:
+```
+? ¿Qué quiere hacer? Modificar elemento
+? ¿Qué elemento desea elegir? Rutas
+? Id del elemento que desea modificar:  102
+? Introduzca el id de la ruta:  102
+? Introduzca el nombre de la ruta:  Nueva Ruta
+? Introduzca las coordenadas x de inicio de la ruta:  13.54
+? Introduzca las coordenadas y de inicio de la ruta:  14.76
+? Introduzca las coordenadas x finales de la ruta:  14.23
+? Introduzca las coordenadas y finales de la ruta:  15.67
+? Introduzca la longitud de la ruta en kilómetros:  17
+? Introduzca el desnivel medio de la ruta:  900
+? Introduzca el id de los usuario que han realizado la ruta separados por comas:  202, 203
+? Introduzca el tipo de actividad de la ruta (bicicleta o corriendo):  corriendo
+? Introduzca la calificación media de la ruta:  8.6
+```
+Una vez hecho esto, si le echamos un vistazo a la base de datos, podemos ver como la anterior ruta 102 ha desaparecido y ha sido sustituida por las modificaciones que indicamos anteriormente por teclado.
+```JSON
+{
+  "id": 101,
+  "name": "Teide",
+  ...
+}
+{
+  "id": 102,
+  "name": "Nueva Ruta",
+  "startCoords": {
+    "x": 13.54,
+    "y": 14.76
+  },
+  "endCoords": {
+    "x": 14.23,
+    "y": 15.67
+  },
+  "length": 17,
+  "avarageSlope": 900,
+  "usersIds": [
+    202,
+    203
+  ],
+  "activityType": "corriendo",
+  "rating": 8.6
+}
+{
+  "id": 103,
+  "name": "Lavas",
+  ...
+}
+...
+```
+El código encargado de lo mostrado anteriormente es el siguiente:
+```TypeScript
+case 'route':
+  inquirer.prompt(modify).then(answer => {  
+    if (db.get('routeCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+      db.get('routeCol.items').remove({ id: Number(answer.id) }).write();
+      inquirer.prompt(addRouteMenu).then(answer => {
+        const vector = answer.uids.split(',').map((v) => Number(v.trim()));
+        const sCoords: coords = {x: Number(answer.scoordsx), y: Number(answer.scoordsy)};
+        const eCoords: coords = {x: Number(answer.ecoordsx), y: Number(answer.ecoordsy)};
+        const newRoute = new Route(Number(answer.id), answer.name, sCoords, eCoords, Number(answer.length), Number(answer.slope), vector, answer.activity, Number(answer.rating));
+        
+        routeCol.addItem(newRoute);
+        db.get('routeCol.items').push(newRoute).write();
+      });
+    } else {
+      console.log("El elemento no está en la base de datos.")
+    }  
+  });
+  break;
+```
+Sigue un espíritu muy similar al apartado de añadir elemento.
+### Borrar Elemento
+Este apartado simplemente se indica por pantala el id del elemento que desea ser borrado y se elimina de la base de datos. Como ejemplo tenemos el siguiente:
+```
+? ¿Qué quiere hacer? Borrar elemento
+? ¿Qué elemento desea elegir? Rutas
+? Id del elemento que desea borrar:  102
+```
+Ahora si observamos la base de datos, veremos que la ruta que habíamos creado en el apartado anterior está borrada.
+```JSON
+{
+  "id": 101,
+  "name": "Teide",
+  ...
+}
+{
+  "id": 103,
+  "name": "Lavas",
+  ...
+}
+...
+```
+El código encargado de borrar el elemento de la base de datos es el siguiente:
+```TypeScript
+inquirer.prompt(remove).then(answer => {                  
+  if (db.get('routeCol.items').find({ id: Number(answer.id) }).value() !== undefined) {
+    db.get('routeCol.items').remove({ id: Number(answer.id) }).write();
+  } else {
+    console.log("El elemento no está en la base de datos.")
+  }  
+});
+```
+Consiste en comprobar que el elemento cuya id desea eliminar el usuario se encuentra en la base de dato y si es así, lo borramos y escribimos la base de datos.
 ## Clase Gestor
 Para la clase gestor también se ha hecho uso de _Inquirer.js_ lo que nos permite hacer uso de la linea de comandos interactiva para poder hacer operaciones de gestion en la base de datos que se indican en el enunciado, que son:
 \
