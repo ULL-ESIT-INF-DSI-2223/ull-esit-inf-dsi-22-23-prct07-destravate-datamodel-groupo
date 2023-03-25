@@ -559,9 +559,7 @@ Se han realizado las pruebas pertinentes:
     ✔ chall2.print() returns print2
 ```
 Para posteriormente comprobar el funcionamiento se deberán de crear varios objetos distintos de las clases anteriormente mencionadas es por ello que hemos decidido organizarlo en colecciones. Comenzando por una clase abstracta _collection_ que es heredada por las colecciones del resto de elementos.
-\
-\
-_Collection_:
+### Collection:
 ```TypeScript
 /**
  * The abstract class collection of items. Generic class.
@@ -632,222 +630,514 @@ Al igual que en el resto de clases se han realizado las pruebas pertinentes:
 ```
 Ademas se ha creado una serie de clases hijas de _collection_ que aparte de los metodos arriba mostrado poseen una serie de metodos que permiten organizar los elementos dentro de la coleccion por los distintos parametros que se han indicado en la practica.
 El resto de clases _collection_ que heredan de la anterior son las siguientes:
-\
-\
-_RoutesCollection_:
+### RoutesCollection:
 ```TypeScript
+/**
+ * Route collection extended from abstract class Colection.
+ */
 export class RouteCollection extends Collection<Route> {
-
+  /**
+   * Constructor's class.
+   * @param routes array of routes.
+   */
   constructor(routes: Route[]) {
     super(routes);
   }
 
+  /**
+   * Sort routes based on name alphabetically in ascending order.
+   * @returns the routes collection sorted.
+   */
   alphabeticNameSortAscend() {
     return this.items.sort((a, b) => a.getName().localeCompare(b.getName()));
   }
 
+  /**
+   * Sort routes based on name alphabetically in descending order.
+   * @returns the routes collection sorted.
+   */
   alphabeticNameSortDescend() {
     return this.items.sort((a, b) => a.getName().localeCompare(b.getName()) * (-1));
   }
 
+  /**
+   * Sort routes based on the amount of users in ascending order.
+   * @returns the routes collection sorted. 
+   */
   usersQuantitySortAscend() {
     return this.items.sort((a, b) => a.getUsersQuantity() - b.getUsersQuantity());
   }
 
+  /**
+   * Sort routes based on the amount of users in descending order.
+   * @returns 
+   */
   usersQuantitySortDescend() {
     return this.items.sort((a, b) => b.getUsersQuantity() - a.getUsersQuantity());
   }
 
+  /**
+   * Sort routes based on the Route's length is ascending order.
+   * @returns the routes collection sorted. 
+   */
   lengthSortAscend() {
     return this.items.sort((a, b) => a.getLength() - b.getLength());
   }
 
+  /**
+   * Sort routes based on the Route's length is descending order.
+   * @returns the routes collection sorted. 
+   */
   lengthSortDescend() {
     return this.items.sort((a, b) => b.getLength() - a.getLength());
   }
 
+  /**
+   * Sort routes based on the rating in ascending order.
+   * @returns the routes collection sorted. 
+   */
   ratingSortAscend() {
     return this.items.sort((a, b) => a.getRating() - b.getRating());
   }
 
+  /**
+   * Sort routes based on the rating in descending order.
+   * @returns the routes collection sorted. 
+   */
   ratingSortDescend() {
     return this.items.sort((a, b) => b.getRating() - a.getRating());
   }
 
+  /**
+   * Sort routes based on the activity (bike).
+   * @returns the routes collection sorted. 
+   */
   bikeActivitySort() {
     return this.items.sort((a,b) => a.getActivityType().localeCompare(b.getActivityType()) )
   }
 
+  /**
+   * Sort routes based on the activity (running).
+   * @returns the routes collection sorted. 
+   */
   runningActivitySort() {
     return this.items.sort((a,b) => b.getActivityType().localeCompare(a.getActivityType()) )
   }
   
+  /**
+   * Get the length collection.
+   * @returns the length collection.
+   */
   getLength() {
     return this.items.length;
   }
 
+  /**
+   * Function that print the names and ids of the routes
+   */
   printNames(){
     this.items.forEach(route => {
         console.log(route.getId(), route.getName())
     });
   }
 
+  /**
+   * Get a route by it's id
+   * @param id id of the route
+   * @returns A route find by it's id
+   */
   getRouteById(id: number){
     return this.items.find((route) => route.getId() === id);
   }
 }
 ```
-_UsersCollection_:
+Se han realizado las pruebas pertinentes:
+```
+  alphabeticNameSortAscend() function test
+    ✔ routeCol.alphabeticNameSortAscend() returns [route2, route1]
+
+  alphabeticNameSortDescend() function test
+    ✔ routeCol.alphabeticNameSortDescend() returns [route1, route2]
+
+  usersQuantitySortAscend() function test
+    ✔ routeCol.usersQuantitySortAscend() returns [route2, route1]
+
+  usersQuantitySortDescend() function test
+    ✔ routeCol.usersQuantitySortDescend() returns [route1, route2]
+
+  lengthSortAscend() function test
+    ✔ routeCol.lengthSortAscend() returns [route2, route1]
+
+  lengthSortDescend() function test
+    ✔ routeCol.lengthSortDescend() returns [route1, route2]
+
+  ratingSortAscend() function test
+    ✔ routeCol.ratingSortAscend() returns [route2, route1]
+
+  ratingSortDescend() function test
+    ✔ routeCol.ratingSortDescend() returns [route1, route2]
+
+  bikeActivitySort() function test
+    ✔ routeCol2.bikeActivitySort() returns [route1, route3]
+
+  runningActivitySort() function test
+    ✔ routeCol2.runningActivitySort() returns [route3, route1]
+
+  getLength() function test
+    ✔ routeCol.getLength() returns 2
+```
+### UsersCollection:
 ```TypeScript
+/**
+ * User collection extended from abstract class Colection.
+ */
 export class UserCollection extends Collection<User> {
-  
   constructor(users: User[]) {
     super(users)
   }
 
+  /**
+   * Sort users based on names alphabetically in ascending order.
+   * @returns the user collection sorted.
+   */
   alphabeticNameSortAscend() {
     return this.items.sort((a, b) => a.getName().localeCompare(b.getName()));
   }
 
+  /**
+   * Sort users based on names alphabetically in descending order.
+   * @returns 
+   */
   alphabeticNameSortDescend() {
     return this.items.sort((a, b) => a.getName().localeCompare(b.getName()) * (-1));
   }
 
+  /**
+   * Sort users based on Kms per week in ascending order.
+   * @returns 
+   */
   kmsSortAscendWeek() {
     return this.items.sort((a, b) => a.getStats().kmWeek - b.getStats().kmWeek)
   }
 
+  /**
+   * Sort users based on Kms per week in descending order.
+   * @returns 
+   */
   kmsSortDescendWeek() {
     return this.items.sort((a, b) => b.getStats().kmWeek - a.getStats().kmWeek)
   }
 
+  /**
+   * Sort users based on Kms per month in ascending order.
+   * @returns 
+   */
   kmsSortAscendMonth() {
     return this.items.sort((a, b) => a.getStats().kmMonth - b.getStats().kmMonth)
   }
 
+  /**
+   * Sort users based on Kms per month in descending order.
+   * @returns 
+   */
   kmsSortDescendMonth() {
     return this.items.sort((a, b) => b.getStats().kmMonth - a.getStats().kmMonth)
   }
 
+  /**
+   * Sort users based on Kms per year in ascending order.
+   * @returns 
+   */
   kmsSortAscendYear() {
     return this.items.sort((a, b) => a.getStats().kmYear - b.getStats().kmYear)
   }
 
+  /**
+   * Sort users based on Kms per year in descending order.
+   * @returns 
+   */
   kmsSortDescendYear() {
     return this.items.sort((a, b) => b.getStats().kmYear - a.getStats().kmYear)
   }  
 
+  /**
+   * Get the length collection.
+   * @returns the length collection.
+   */
   getLength() {
     return this.items.length;
   }
 
+  /**
+   * Get a user by it's id
+   * @param id id of the user
+   * @returns a user find by it's id
+   */
   getUserbyId(id: number) {
     return this.items.find((user) => user.id === id);
   }
 
+  /**
+   * show all the users of the database
+   */
   showUsers() {
     this.items.forEach((user) => {
       console.log(user.id);
     });
   }
-
 };
 ```
-_GroupCollection_:
+Se han realizado las pruebas pertinentes:
+```
+  alphabeticNameSortAscend() function test
+    ✔ userCol.alphabeticNameSortAscend() returns [user1, user2]
+
+  alphabeticNameSortDescend() function test
+    ✔ userCol.alphabeticNameSortDescend() returns [user2, user1]
+
+  kmsSortAscendWeek() function test
+    ✔ userCol.kmsSortAscendWeek() returns [user1, user2]
+
+  kmsSortDescendWeek() function test
+    ✔ userCol.kmsSortDescendWeek() returns [user2, user1]
+
+  kmsSortAscendMonth() function test
+    ✔ userCol.kmsSortAscendMonth() returns [user2, user1]
+
+  kmsSortDescendMonth() function test
+    ✔ userCol.kmsSortDescendMonth() returns [user1, user2]
+
+  kmsSortAscendYear() function test
+    ✔ userCol.kmsSortAscendYear() returns [user1, user2]
+
+  kmsSortDescendYear() function test
+    ✔ userCol.kmsSortDescendYear() returns [user2, user1]
+
+  getLength() function test
+    ✔ userCol.getLength() returns 2
+```
+### GroupCollection:
 ```TypeScript
+import { Group } from "./group";
+import { Collection } from "./collection";
+
+/**
+ * Group collection extended from abstract class Colection.
+ */
 export class GroupCollection extends Collection<Group> {
-  
   constructor(groups: Group[]){
     super(groups)
   }
 
+  /**
+   * Sort groups based on names alphabetically in ascending order.
+   * @returns the group collection sorted.
+   */
   alphabeticNameSortAscend() {
     return this.items.sort((a, b) => a.getName().localeCompare(b.getName()));
   }
 
+  /**
+   * Sort groups based on names alphabetically in descending order.
+   * @returns the group collection sorted.
+   */
   alphabeticNameSortDescend() {
     return this.items.sort((a, b) => a.getName().localeCompare(b.getName()) * (-1));
   }
 
+  /**
+   * Sort groups based on Kms per week in ascending order.
+   * @returns the group collection sorted.
+   */
   kmsSortAscendWeek() {
     return this.items.sort((a, b) => a.getStats().kmWeek - b.getStats().kmWeek)
   }
 
+  /**
+   * Sort groups based on Kms per week in descending order.
+   * @returns the group collection sorted. 
+   */
   kmsSortDescendWeek() {
     return this.items.sort((a, b) => b.getStats().kmWeek - a.getStats().kmWeek)
   }
 
+  /**
+   * Sort groups based on Kms per month in ascending order.
+   * @returns the group collection sorted. 
+   */
   kmsSortAscendMonth() {
     return this.items.sort((a, b) => a.getStats().kmMonth - b.getStats().kmMonth)
   }
 
+  /**
+   * Sort groups based on Kms per month in descending order.
+   * @returns the group collection sorted. 
+   */
   kmsSortDescendMonth() {
     return this.items.sort((a, b) => b.getStats().kmMonth - a.getStats().kmMonth)
   }
 
+  /**
+   * Sort groups based on Kms per year in ascending order.
+   * @returns the group collection sorted. 
+   */
   kmsSortAscendYear() {
     return this.items.sort((a, b) => a.getStats().kmYear - b.getStats().kmYear)
   }
 
+  /**
+   * Sort groups based on Kms per year in descending order.
+   * @returns the group collection sorted. 
+   */
   kmsSortDescendYear() {
     return this.items.sort((a, b) => b.getStats().kmYear - a.getStats().kmYear)
   }  
 
+  /**
+   * Sort groups based on the number of members in ascending order.
+   * @returns the group collection sorted.
+   */
   membersSortAscend() {
     return this.items.sort((a, b) => a.getNumberOfMembers() - b.getNumberOfMembers())
   }
 
+  /**
+   * Sort groups based on the number of members in descending order.
+   * @returns the group collection sorted. 
+   */
   membersSortDescend() {
     return this.items.sort((a, b) => b.getNumberOfMembers() - a.getNumberOfMembers())
   }
 
+  /**
+   * Get the length of the collection.
+   * @returns the length collection.
+   */
   getLength() {
     return this.items.length;
   }
 
+  /**
+   * Get the groups of the collection
+   */
   showGroups() {
     this.items.forEach(group => {
       console.log(group.Id, group.getName());
     });
   }
 
+  /**
+   * Get a group by it's id
+   * @param id id of the group get
+   * @returns a group found by his id
+   */
   getGroupById(id: number) {
     return this.items.find(group => group.Id === id);
   }
+
 }
 ```
-_ChallengeCollection_:
-```TypeScript
-export class ChallengeCollection extends Collection<Challenge> {
+Se han realizado las pruebas pertinentes:
+```
+  alphabeticNameSortDescend() function test
+    ✔ groupCol.alphabeticNameSortAscend() returns [group2, group1]
 
+  alphabeticNameSortDescend() function test
+    ✔ groupCol.alphabeticNameSortDescend() returns [group2, group1]
+
+  kmsSortAscendWeek() function test
+    ✔ groupCol.kmsSortAscendWeek() returns [group1, group2]
+
+  kmsSortDescendWeek() function test
+    ✔ groupCol.kmsSortDescendWeek() returns [group2, group1]
+
+  kmsSortAscendMonth() function test
+    ✔ groupCol.kmsSortAscendMonth() returns [group1, group2]
+
+  kmsSortDescendMonth() function test
+    ✔ groupCol.kmsSortDescendMonth() returns [group2, group1]
+
+  kmsSortAscendYear() function test
+    ✔ groupCol.kmsSortAscendYear() returns [group1, group2]
+
+  kmsSortDescendYear() function test
+    ✔ groupCol.kmsSortDescendYear() returns [group2, group1]
+
+  membersSortAscend() function test
+    ✔ groupCol.membersSortAscend() returns [group1, group2]
+
+  membersSortDescend() function test
+    ✔ groupCol.membersSortDescend() returns [group2, group1]
+
+  getLength() function test
+    ✔ groupCol.getLength() returns 5
+```
+### ChallengeCollection:
+```TypeScript
+/**
+ * Challenge collection extended from abstract class Colection.
+ */
+export class ChallengeCollection extends Collection<Challenge> {
+  /**
+   * Constructor's class.
+   * @param challenges array of challenges.
+   */
   constructor(challenges: Challenge[]){
     super(challenges);
   }
-
+  
+  /**
+   * Sort challenges based on names alphabetically in ascending order.
+   * @returns the challenge collection sorted.
+   */
   alphabeticNameSortAscend() {
     return this.items.sort((a, b) => a.getName().localeCompare(b.getName()));
   }
 
+  /**
+   * Sort challenges based on names alphabetically in descending order.
+   * @returns the challenge collection sorted.
+   */
   alphabeticNameSortDescend() {
     return this.items.sort((a, b) => a.getName().localeCompare(b.getName())* (-1));
   }
 
+  /**
+   * Sort challenges based on Kms in ascending order.
+   * @returns the challenge collection sorted.
+   */
   kmsSortAscend() {
     return this.items.sort((a, b) => a.getTotalKms() - b.getTotalKms());
   }
 
+  /**
+   * Sort the challenges based on Kms in descending order.
+   * @returns the challenge collection sorted.
+   */
   kmsSortDescend() {
     return this.items.sort((a, b) => b.getTotalKms() - a.getTotalKms());
   }
 
+  /**
+   * Sort the challenges based on the number of users in ascending order.
+   * @returns the challenge collection sorted.
+   */
   userSortAscend() {
     return this.items.sort((a, b) => a.getNumberofUser() - b.getNumberofUser())
   }
 
+  /**
+   * Sort the challenges based on the number of users in descending order.
+   * @returns the challenge collection sorted,
+   */
   userSortDescend() {
     return this.items.sort((a, b) => b.getNumberofUser() - a.getNumberofUser())
   }
 
+  /**
+   * Get the length collection.
+   * @returns the length collection.
+   */
     getLength() {
       return this.items.length;
     }
@@ -863,15 +1153,6 @@ Para comprobar el funcionamiento de las clases anteriormente implementadas se ha
 \
 _Database_:
 ```TypeScript
-import { Route } from "./route";
-import { coords } from "./route";
-import { routeHistory } from "./users";
-
-import { User } from "./users"
-import { stats } from "./users";
-import { Challenge } from "./challenge";
-import { Group } from "./group";
-
 
 const sCoords: coords = {x: 28.4894, y: 16.3168};
 const eCoords: coords = {x: 28.4841, y: 16.2337};
@@ -969,54 +1250,61 @@ Esto solo se realizará la primera vez para que queden guardadas en el _json_, d
 ## Clase Gestor
 Para la clase gestor también se ha hecho uso de _Inquirer.js_ lo que nos permite hacer uso de la linea de comandos interactiva para poder hacer operaciones de gestion en la base de datos que se indican en el enunciado, que son:
 /
-*Registrarse en el sistema*. Los usuarios que se conectan por primera vez al sistema deberan registrarse en el mismo para crear un usuario nuevo con sus datos, ademas para que una persona pueda volver a conectarse y usar su usuario en el sistema tambien hemos implementado un metodo _log in_, que comprueba que estés registrado y si es así te permite hacer uso de las funciones del sistema con tu usuario.
+/
+**Registrarse en el sistema**. Los usuarios que se conectan por primera vez al sistema deberan registrarse en el mismo para crear un usuario nuevo con sus datos, ademas para que una persona pueda volver a conectarse y usar su usuario en el sistema tambien hemos implementado un metodo _log in_, que comprueba que estés registrado y si es así te permite hacer uso de las funciones del sistema con tu usuario.
 ```Typescript
-async signIn() {
-  const answer = await inquirer.prompt([
-    {
-      name: "id",
-      type: "input",
-      message: "Introduce tu id",
-    },
-    {
-      name: "name",
-      type: "input",
-      message: "Introduce tu nombre",
-    },
-    {
-      name: "activity",
-      type: "input",
-      message: "Introduce tu actividad",
-    },
-  ]);
-  if (this.users.getUserbyId(answer.id)) {
-    console.log("El usuario ya existe");
-    await this.signIn();
+  /**
+   * Function to sign in the management
+   */
+  async signIn() {
+    const answer = await inquirer.prompt([
+      {
+        name: "id",
+        type: "input",
+        message: "Introduce tu id",
+      },
+      {
+        name: "name",
+        type: "input",
+        message: "Introduce tu nombre",
+      },
+      {
+        name: "activity",
+        type: "input",
+        message: "Introduce tu actividad",
+      },
+    ]);
+    if (this.users.getUserbyId(parseInt(answer.id))) {
+      console.log("El usuario ya existe");
+      return;
+    }
+    const user = new User(
+      answer.id,
+      answer.name,
+      answer.activity,
+      [],
+      [],
+      {
+        kmWeek: 0,
+        kmMonth: 0,
+        kmYear: 0,
+        slopeWeek: 0,
+        slopeMonth: 0,
+        slopeYear: 0,
+      },
+      [],
+      [],
+      []
+    );
+    this.users.addItem(user);
+    this.user = user;
+    console.log("Usuario creado correctamente");
   }
-  const user = new User(
-    answer.id,
-    answer.name,
-    answer.activity,
-    [],
-    [],
-    {
-      kmWeek: 0,
-      kmMonth: 0,
-      kmYear: 0,
-      slopeWeek: 0,
-      slopeMonth: 0,
-      slopeYear: 0,
-    },
-    [],
-    [],
-    []
-  );
-  this.users.addItem(user);
-  this.user = user;
-  console.log("Usuario creado correctamente");
-}
 
-async logIn() {
+  /**
+   * Function to log in the management
+   */
+  async logIn() {
     const answer = await inquirer.prompt([
       {
         name: "id",
@@ -1031,17 +1319,19 @@ async logIn() {
       console.log("Bienvenido");
     } else {
       console.log("El usuario no existe. Vuelve a intentarlo");
-      await this.logIn();
     }
   }
 ```
 Ejemplo de funcionamiento:
 ```
 ```
-*Visualizar todas las rutas existentes dentro del sistema*. Este método imprime una lista por pantalla de todas las rutas con sus ids y luego nos permite escoger una de entre estas y mostrar todos sus datos.
+**Visualizar todas las rutas existentes dentro del sistema**. Este método imprime una lista por pantalla de todas las rutas con sus ids y luego nos permite escoger una de entre estas y mostrar todos sus datos.
 
 ```Typescript
-async showRoutes() {
+  /**
+   * Function to show the routes of the database and to choose one and show all his information
+   */
+  async showRoutes() {
     routeCol.printNames();
 
     const answer = await inquirer.prompt([
@@ -1055,20 +1345,22 @@ async showRoutes() {
     answer.id = parseInt(answer.id);
     const route = this.routes.getRouteById(answer.id);
     if (route) {
-      this.routes.getRouteById(answer.id).print();
+      console.log(this.routes.getRouteById(answer.id).print());
     } else {
-      console.log("la ruta no existe. Vuelve a intentarlo");
-      await this.showRoutes();
+      console.log("La ruta no existe.");
     }
-}
+  }
 ```
 Ejemplo de funcionamiento:
 ```
 ```
-*Unirse a un grupo existente*. Este método añade al usuario dentro de un grupo ya existente haciendo uso del metodo del grupo _addUser()_.
+**Unirse a un grupo existente**. Este método añade al usuario dentro de un grupo ya existente haciendo uso del metodo del grupo _addUser()_.
 
 ```Typescript
-async joinGroup() {
+  /**
+   * Function that make the user join a group
+   */
+  async joinGroup() {
     const answer = await inquirer.prompt([
       {
         name: "id",
@@ -1084,48 +1376,54 @@ async joinGroup() {
     } else {
       console.log("El grupo no existe");
     }
-}
+  }
 ```
 Ejemplo de funcionamiento:
 ```
 ```
-*Visualizar, crear y borrar grupos*. Con estos métodos podemos ver los grupos que hay en el sistema, crear un nuevo grupo dentro del sistema o borrar los grupos que ya existan, esto último teniendo en cuenta que solo se puede hacer si el usuario es el creador del grupo, para ello el grupo guarda el id de su creador, y solo si este coincide con el del usuario que lo va a borrar la operación es permitida.
+**Visualizar, crear y borrar grupos**. Con estos métodos podemos ver los grupos que hay en el sistema, crear un nuevo grupo dentro del sistema o borrar los grupos que ya existan, esto último teniendo en cuenta que solo se puede hacer si el usuario es el creador del grupo, para ello el grupo guarda el id de su creador, y solo si este coincide con el del usuario que lo va a borrar la operación es permitida.
 
 ```Typescript
-async showGroups() {
+  /**
+   * Function that shows groups of the database
+   */
+  async showGroups() {
     this.groups.showGroups();
-}
-async createGroup() {
-  const answer = await inquirer.prompt([
-    {
-      name: "id",
-      type: "input",
-      message: "Introduce el id del grupo",
-    },
-    {
-      name: "name",
-      type: "input",
-      message: "Introduce el nombre del grupo",
-    },
-  ]);
-  answer.id = parseInt(answer.id);
-  if (this.groups.getGroupById(answer.id))
-    return console.log("El grupo ya existe");
-  else {
-    const group = new Group(
-      answer.id,
-      answer.name,
-      [],
-      [],
-      [],
-      [],
-      this.user.id
-    );
-    this.groups.addItem(group);
-    console.log("Grupo creado correctamente");
   }
-}
-async deleteGroup() {
+
+  /**
+   * Function that create a new group
+   */
+  async createGroup() {
+    const answer = await inquirer.prompt([
+      {
+        name: "id",
+        type: "input",
+        message: "Introduce el id del grupo",
+      },
+    ]);
+    answer.id = parseInt(answer.id);
+    if (this.groups.getGroupById(answer.id))
+      return console.log("El grupo ya existe");
+    else {
+      const group = new Group(
+        answer.id,
+        answer.name,
+        [],
+        [],
+        [],
+        [],
+        this.user.id
+      );
+      this.groups.addItem(group);
+      console.log("Grupo creado correctamente");
+    }
+  }
+
+  /**
+   * Function that delete an existing group
+   */
+  async deleteGroup() {
     const answer = await inquirer.prompt([
       {
         name: "id",
@@ -1150,8 +1448,41 @@ async deleteGroup() {
 Ejemplo de funcionamiento:
 ```
 ```
-
 Entre otras funciones que hemos creado y añadido dentro de esta clase con el fin de gestionar la información dentro del sistema.
+\
+\
+También se han hecho una serie de pruebas para la clase gestor:
+```
+Bienvenido
+    ✔ log in
+El usuario no existe. Vuelve a intentarlo
+    ✔ log in error
+Usuario creado correctamente
+    ✔ sign in
+El usuario ya existe
+    ✔ sign in error
+    ✔ should show all users
+    ✔ should print a route
+    ✔ should print a route error
+    ✔ should show all groups
+    ✔ addFriend
+    ✔ addFriend error
+    ✔ addFriend user not exist
+    ✔ deleteFriend
+    ✔ deleteFriend error
+    ✔ deleteFriend user not exist
+    ✔ joinGroup
+    ✔ joinGroup error
+    ✔ CreateGroup
+    ✔ CreateGroup error
+    ✔ deleteGroup
+    ✔ deleteGroup error
+    ✔ deleteGroup not owner
+    ✔ start method exit
+    ✔ options method exit
+```
+
+
 ## Conclusiones
 La realización de esta práctica en grupo nos ha permitido aunar todos los conocimientos que hemos adquirido en la asginatura hasta este punto, con la adición de dos herramientos de gran utilidad como lo son _Inquirer.js_ y _Lowdb_. La primera de ellas permitiendonos crear una línea de comandos interactiva de una forma mucho más cómod que usando simplemente _prompt()_ y la segunda nos da la opción de modificar los objetos que se encuentran un una base de datos (_json_), consiguiendo así guardar los cambios y estos no hagan _reset_ cada vez que ejecutamos el programa.
 \
@@ -1159,6 +1490,6 @@ La realización de esta práctica en grupo nos ha permitido aunar todos los cono
 Github Actions.
 
 ## Bibliografía
-[Guion de la práctica 7](https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/)
-[Documentación Inquirer.js](https://www.npmjs.com/package/inquirer#documentation)
-[Documentación Lowdb](https://www.npmjs.com/package/lowdb)
+[Guion de la práctica 7](https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/)\
+[Documentación Inquirer.js](https://www.npmjs.com/package/inquirer#documentation)\
+[Documentación Lowdb](https://www.npmjs.com/package/lowdb)\
