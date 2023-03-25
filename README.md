@@ -18,6 +18,8 @@ Para cada uno de estos elementos se ha creado su correspondiente clase, con los 
 Estas cuatro clases son las siguientes:
 \
 \
+### Routes
+Esta clase almacena una ruta en el sistema con los atributos definidos en el enunciado, ademas posee unos metodos para devolver esos valores y un metodo para imprimir esa información por pantalla.
 _Routes_:
 ```TypeScript
 export class Route {
@@ -89,6 +91,8 @@ export class Route {
   }
 }
 ```
+### Users
+Esta clase define un usuario del sistema, aparte de los atributos que se nos proporcionan y los metodos correspondientes para obtener esos datos, la clase user nos permite borrar o añadir usuarios a la lista de amigos y mostrar el historial de rutas.
 _Users_:
 ```TypeScript
 export class User {
@@ -178,6 +182,8 @@ export class User {
   }
 }
 ```
+### Groups
+Esta clase representa un grupo de usuarios del sistema, con sus metodos podemos obtener sus atributos, mostrarlos por pantalla, mostrar los usuarios que componen el grupo y sus rutas favoritas y añadir usuarios al grupo.
 _Groups_:
 ```TypeScript
 export class Group {
@@ -262,6 +268,8 @@ return result;
   }
 }
 ```
+### Challenges
+Este metodo que representa los retos del sistema, tiene metodos que nos devuelve sus atributos y un metodo que muestra toda la informacion del reto por pantalla.
 _Challenge_:
 ```TypeScript
 export class Challenge {
@@ -330,51 +338,27 @@ Para posteriormente comprobar el funcionamiento se deberán de crear varios obje
 \
 _Collection_:
 ```TypeScript
-/**
- * The abstract class collection of items. Generic class.
- */
+
 export abstract class Collection<T> {
-  /**
-   * Constructor's class.
-   * @param items Array of items of generic's type.
-   */
+  
   constructor(protected items: T[]) {   
   }
 
-  /**
-   * Remove an item from the collection.
-   * @param index index of an item of the collection.
-   * @returns the removed item.
-   */
   removeItem(index: number): T {
       const removed = this.items[index];
       this.items.splice(index, 1);
       return removed;
   }
 
-  /**
-   * Add an item to the collection.
-   * @param newItem the new item to add to the collection.
-   * @returns True if the item was added.
-   */
   addItem(newItem: T) {
     this.items.push(newItem);  
     return true;
   }
 
-  /**
-   * Get an item to the collection.
-   * @param index index item to get from the collection.
-   * @returns the item selected.
-   */
   getItem(index: number): T {
     return this.items[index];
   }
 
-  /**
-   * Get the number of items from the collection.
-   * @returns the number of items.
-   */
   getNumberOfItems() {
     return this.items.length;
   }
@@ -397,20 +381,228 @@ removeItem() function test
   getNumberOfItems() function test
     ✔ challCol.getNumberOfItems() returns 3
 ```
+Ademas se ha creado una serie de clases hijas de _collection_ que aparte de los metodos arriba mostrado poseen una serie de metodos que permiten organizar los elementos dentro de la coleccion por los distintos parametros que se han indicado en la practica.
 El resto de clases _collection_ que heredan de la anterior son las siguientes:
 \
 \
 _RoutesCollection_:
 ```TypeScript
+export class RouteCollection extends Collection<Route> {
+
+  constructor(routes: Route[]) {
+    super(routes);
+  }
+
+  alphabeticNameSortAscend() {
+    return this.items.sort((a, b) => a.getName().localeCompare(b.getName()));
+  }
+
+  alphabeticNameSortDescend() {
+    return this.items.sort((a, b) => a.getName().localeCompare(b.getName()) * (-1));
+  }
+
+  usersQuantitySortAscend() {
+    return this.items.sort((a, b) => a.getUsersQuantity() - b.getUsersQuantity());
+  }
+
+  usersQuantitySortDescend() {
+    return this.items.sort((a, b) => b.getUsersQuantity() - a.getUsersQuantity());
+  }
+
+  lengthSortAscend() {
+    return this.items.sort((a, b) => a.getLength() - b.getLength());
+  }
+
+  lengthSortDescend() {
+    return this.items.sort((a, b) => b.getLength() - a.getLength());
+  }
+
+  ratingSortAscend() {
+    return this.items.sort((a, b) => a.getRating() - b.getRating());
+  }
+
+  ratingSortDescend() {
+    return this.items.sort((a, b) => b.getRating() - a.getRating());
+  }
+
+  bikeActivitySort() {
+    return this.items.sort((a,b) => a.getActivityType().localeCompare(b.getActivityType()) )
+  }
+
+  runningActivitySort() {
+    return this.items.sort((a,b) => b.getActivityType().localeCompare(a.getActivityType()) )
+  }
+  
+  getLength() {
+    return this.items.length;
+  }
+
+  printNames(){
+    this.items.forEach(route => {
+        console.log(route.getId(), route.getName())
+    });
+  }
+
+  getRouteById(id: number){
+    return this.items.find((route) => route.getId() === id);
+  }
+}
 ```
 _UsersCollection_:
 ```TypeScript
+export class UserCollection extends Collection<User> {
+  
+  constructor(users: User[]) {
+    super(users)
+  }
+
+  alphabeticNameSortAscend() {
+    return this.items.sort((a, b) => a.getName().localeCompare(b.getName()));
+  }
+
+  alphabeticNameSortDescend() {
+    return this.items.sort((a, b) => a.getName().localeCompare(b.getName()) * (-1));
+  }
+
+  kmsSortAscendWeek() {
+    return this.items.sort((a, b) => a.getStats().kmWeek - b.getStats().kmWeek)
+  }
+
+  kmsSortDescendWeek() {
+    return this.items.sort((a, b) => b.getStats().kmWeek - a.getStats().kmWeek)
+  }
+
+  kmsSortAscendMonth() {
+    return this.items.sort((a, b) => a.getStats().kmMonth - b.getStats().kmMonth)
+  }
+
+  kmsSortDescendMonth() {
+    return this.items.sort((a, b) => b.getStats().kmMonth - a.getStats().kmMonth)
+  }
+
+  kmsSortAscendYear() {
+    return this.items.sort((a, b) => a.getStats().kmYear - b.getStats().kmYear)
+  }
+
+  kmsSortDescendYear() {
+    return this.items.sort((a, b) => b.getStats().kmYear - a.getStats().kmYear)
+  }  
+
+  getLength() {
+    return this.items.length;
+  }
+
+  getUserbyId(id: number) {
+    return this.items.find((user) => user.id === id);
+  }
+
+  showUsers() {
+    this.items.forEach((user) => {
+      console.log(user.id);
+    });
+  }
+
+};
 ```
 _GroupCollection_:
 ```TypeScript
+export class GroupCollection extends Collection<Group> {
+  
+  constructor(groups: Group[]){
+    super(groups)
+  }
+
+  alphabeticNameSortAscend() {
+    return this.items.sort((a, b) => a.getName().localeCompare(b.getName()));
+  }
+
+  alphabeticNameSortDescend() {
+    return this.items.sort((a, b) => a.getName().localeCompare(b.getName()) * (-1));
+  }
+
+  kmsSortAscendWeek() {
+    return this.items.sort((a, b) => a.getStats().kmWeek - b.getStats().kmWeek)
+  }
+
+  kmsSortDescendWeek() {
+    return this.items.sort((a, b) => b.getStats().kmWeek - a.getStats().kmWeek)
+  }
+
+  kmsSortAscendMonth() {
+    return this.items.sort((a, b) => a.getStats().kmMonth - b.getStats().kmMonth)
+  }
+
+  kmsSortDescendMonth() {
+    return this.items.sort((a, b) => b.getStats().kmMonth - a.getStats().kmMonth)
+  }
+
+  kmsSortAscendYear() {
+    return this.items.sort((a, b) => a.getStats().kmYear - b.getStats().kmYear)
+  }
+
+  kmsSortDescendYear() {
+    return this.items.sort((a, b) => b.getStats().kmYear - a.getStats().kmYear)
+  }  
+
+  membersSortAscend() {
+    return this.items.sort((a, b) => a.getNumberOfMembers() - b.getNumberOfMembers())
+  }
+
+  membersSortDescend() {
+    return this.items.sort((a, b) => b.getNumberOfMembers() - a.getNumberOfMembers())
+  }
+
+  getLength() {
+    return this.items.length;
+  }
+
+  showGroups() {
+    this.items.forEach(group => {
+      console.log(group.Id, group.getName());
+    });
+  }
+
+  getGroupById(id: number) {
+    return this.items.find(group => group.Id === id);
+  }
+}
 ```
 _ChallengeCollection_:
 ```TypeScript
+export class ChallengeCollection extends Collection<Challenge> {
+
+  constructor(challenges: Challenge[]){
+    super(challenges);
+  }
+
+  alphabeticNameSortAscend() {
+    return this.items.sort((a, b) => a.getName().localeCompare(b.getName()));
+  }
+
+  alphabeticNameSortDescend() {
+    return this.items.sort((a, b) => a.getName().localeCompare(b.getName())* (-1));
+  }
+
+  kmsSortAscend() {
+    return this.items.sort((a, b) => a.getTotalKms() - b.getTotalKms());
+  }
+
+  kmsSortDescend() {
+    return this.items.sort((a, b) => b.getTotalKms() - a.getTotalKms());
+  }
+
+  userSortAscend() {
+    return this.items.sort((a, b) => a.getNumberofUser() - b.getNumberofUser())
+  }
+
+  userSortDescend() {
+    return this.items.sort((a, b) => b.getNumberofUser() - a.getNumberofUser())
+  }
+
+    getLength() {
+      return this.items.length;
+    }
+}
 ```
 ## Funcionamiento
 Para comprobar el funcionamiento de las clases anteriormente implementadas se han creado una "base de datos" donde se declaran los siguientes elementos:
@@ -527,8 +719,54 @@ db.defaults({challCol}).write();
 Esto solo se realizará la primera vez para que queden guardadas en el _json_, después eliminaremos las líneas _db.defaults...write()_ para que no se altere nuestra base de datos cada vez que ejecutamos el programa.
 ## Clase Gestor
 Para la clase gestor también se ha hecho uso de _Inquirer.js_ lo que nos permite hacer uso de la linea de comandos interactiva para poder hacer operaciones de gestion en la base de datos que se indican en el enunciado, que son:
-- Registrarse en el sistema. Un usuario que se conecte por primera vez al sistema deberá poder incluir su información para ser almacenada en el sistema. Asimismo, un usuario podrá visualizar el listado de usuarios existentes dentro del sistema y añadir/borrar amigos.
+/
+- Registrarse en el sistema. Los usuarios que se conectan por primera vez al sistema deberan registrarse en el mismo para crear un usuario nuevo con sus datos, ademas para que una persona pueda volver a conectarse y usar su usuario en el sistema tambien hemos implementado un metodo log in, que comprueba que estes registrado y si es asi te permite hacer uso de las funciones del sistema con tu usuario.
 ```Typescript
+async signIn() {
+  const answer = await inquirer.prompt([
+    {
+      name: "id",
+      type: "input",
+      message: "Introduce tu id",
+    },
+    {
+      name: "name",
+      type: "input",
+      message: "Introduce tu nombre",
+    },
+    {
+      name: "activity",
+      type: "input",
+      message: "Introduce tu actividad",
+    },
+  ]);
+  if (this.users.getUserbyId(answer.id)) {
+    console.log("El usuario ya existe");
+    await this.signIn();
+  }
+  const user = new User(
+    answer.id,
+    answer.name,
+    answer.activity,
+    [],
+    [],
+    {
+      kmWeek: 0,
+      kmMonth: 0,
+      kmYear: 0,
+      slopeWeek: 0,
+      slopeMonth: 0,
+      slopeYear: 0,
+    },
+    [],
+    [],
+    []
+  );
+  this.users.addItem(user);
+  this.user = user;
+  console.log("Usuario creado correctamente");
+}
+
 async logIn() {
     const answer = await inquirer.prompt([
       {
@@ -549,7 +787,7 @@ async logIn() {
   }
 ```
 
-- Visualizar todas las rutas existentes dentro del sistema. En este apartado se deben poder consultar el listado de rutas así como acceder a la información completa de cada una de ellas.
+- Visualizar todas las rutas existentes dentro del sistema. Este metodo imprime una lista por pantalla de todas las rutas con sus ids y luego nos permite escoger una de entre estas y mostrar todos sus datos.
 
 ```Typescript
 async showRoutes() {
@@ -574,7 +812,7 @@ async showRoutes() {
 }
 ```
 
-- Unirse a un grupo existente. Este apartado considera la opción de un usuario que desea incluirse dentro de un grupo ya existente en el sistema.
+- Unirse a un grupo existente. Este metodo añade al usuario dentro de un grupo ya existente haciendo uso del metodo del grupo _addUser()_.
 
 ```Typescript
 async joinGroup() {
@@ -596,7 +834,7 @@ async joinGroup() {
 }
 ```
 
-- Visualizar, crear y borrar grupos. Un usuario podrá borrar un grupo, pero solo si esta ha sido creado por él, es decir, no se podrá borrar un grupo pre-cargado en el sistema. Por otro lado, los grupos se podrán guardar usando el mismo sistema empleado para guardar la información cargada en el sistema. Por último, considere que en posteriores conexiones al sistema, el usuario podrá desear borrar un grupo que haya creado anteriormente. Debido a esto, se deberá distinguir entre los grupos creados por el usuario y los creados por el sistema con el objetivo de evitar borrar información sin permiso.
+- Visualizar, crear y borrar grupos. con estos metodos podemos ver los grupos que hay en el sistema, crear un nuevo grupo dentro del sistema o borrar los grupos que ya existan, esto ultimo teniendo en cuenta que solo se puede hacer si el usuario es el creador del grupo, para ello el grupo guarda el id de su creador, y solo si este coincide con el del usuario que lo va a borrar la operacion es permitida.
 
 ```Typescript
 async showGroups() {

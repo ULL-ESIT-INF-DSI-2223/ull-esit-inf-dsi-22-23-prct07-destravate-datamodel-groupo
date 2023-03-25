@@ -169,7 +169,7 @@ export class Management {
   }
 
   /**
-   * Function to log in in the management
+   * Function to log in the management
    */
   async logIn() {
     const answer = await inquirer.prompt([
