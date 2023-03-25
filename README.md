@@ -1282,22 +1282,22 @@ Antes de ejecutar el programa solo nos aparece en la base de datos los 3 restos 
 {
   "id": 1,
   "name": "Tres Cumbres",
-  //...
+  ...
 }
 {
   "id": 2,
   "name": "Vuelta Tenerife",
-  //...
+  ...
 }
 {
   "id": 3,
   "name": "Estrellas",
-  //...
+  ...
 }
 {
   "id": 4,
   "name": "Nuevo Reto",
-  //...
+  ...
 }
 ```
 El código que nos permite añadir un reto a la base de datos es el siguiente:
@@ -1346,7 +1346,7 @@ Una vez hecho esto, si le echamos un vistazo a la base de datos, podemos ver com
 {
   "id": 101,
   "name": "Teide",
-  //...
+  ...
 }
 {
   "id": 102,
@@ -1371,9 +1371,9 @@ Una vez hecho esto, si le echamos un vistazo a la base de datos, podemos ver com
 {
   "id": 103,
   "name": "Lavas",
-  //...
+  ...
 }
-//...
+...
 ```
 El código encargado de lo mostrado anteriormente es el siguiente:
 ```TypeScript
@@ -1408,13 +1408,13 @@ Ahora si observamos la base de datos, veremos que la ruta que habíamos creado e
 ```JSON
 {
   "id": 101,
-  "name": "Teide",
-  //...
+  "name": "Teide",  
+  ...
 }
 {
   "id": 103,
   "name": "Lavas",
-  //...
+  ...
 }
 ...
 ```
