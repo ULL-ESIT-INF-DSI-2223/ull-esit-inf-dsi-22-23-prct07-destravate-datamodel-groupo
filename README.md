@@ -1221,6 +1221,9 @@ Son cuatro las funciones que implementa este fichero:
 \
 \
 Es este informe no mostraremos todas las combinaciones posibles que se pueden realizar debido a su extensión, sin embargo, si mostraremos el correcto funcionamiento de cada una de ellas.
+\
+\
+El funcionamiento de todas las partes consiste que hacer una constante con las preguntas que posteriormente le pasaremos al inquirer y dentro de este _switches_ anidados para entrar en la parte del código que seleccione el usuario.
 ### Mostrar Elemento
 En el guion de la práctica se nos pide poder ordenar los elementos de las colecciones de múltiples formas distintas, para esto se hace uso de los métodos declarados anteriormente en cada una de las colecciones. A continuación veremos un ejemplo de ello:
 ```
@@ -1250,6 +1253,76 @@ Kms: 41
 Usuarios: Juan, Luis
 ```
 Podemos ver como se muestran los retos ordenados de forma ascendente en cuanto a los Kms que se deben realizar se refiere.
+```TypeScript
+...
+inquirer.prompt(sortMenu).then(answer => {
+  switch (answer.option) {
+    case 'asc':
+      for (let i = 0; i < routeCol.getLength(); i++) {                           
+        console.log(routeCol.alphabeticNameSortAscend()[i].print());
+        console.log('-------');
+      }
+    break;
+...
+```
+Esa sería la parte del código que ejecuta lo anterior, haciendo llamada a _alphabeticNameSortAscend()_ e imprimiéndolo por pantalla.
+### Añadir Elemento
+Desde esta opción se nos permite añadir uno de los elementos seleccionados con los datos introducidos por pantalla en la base de datos. Un ejemplo de uso es el siguiente:
+```
+? ¿Qué quiere hacer? Añadir elemento
+? ¿Qué elemento desea elegir? Retos
+? Introduzca el id del reto:  4
+? Introduzca el nombre del reto:  Nuevo Reto
+? Introduzca el id de las rutas que desea añadir separado por comas:  101, 103, 105
+? Introduzca el tipo de actividad de la ruta (bicicleta o corriendo):  corriendo
+? Introduzca el id de los usuarios que desea añadir separado por comas:  201, 202
+```
+Antes de ejecutar el programa solo nos aparece en la base de datos los 3 restos creados inicialmente, tras esto, se añade lo siguiente a la base de datos:
+```JSON
+{
+  "id": 1,
+  "name": "Tres Cumbres",
+  ...
+}
+{
+  "id": 2,
+  "name": "Vuelta Tenerife",
+  ...
+}
+{
+  "id": 3,
+  "name": "Estrellas",
+  ...
+}
+{
+  "id": 4,
+  "name": "Nuevo Reto",
+  ...
+}
+```
+El código que nos permite añadir un reto a la base de datos es el siguiente:
+```TypeScript
+case 'challenge':
+  inquirer.prompt(addChallMenu).then(answer => {
+    const vector2: Route[] = [];
+    const vector3: User[] = [];
+    const vector = answer.routes.split(',').map((v) => Number(v.trim()));
+      for (let i = 0; i < vector.length; i++) {
+        vector2.push(db.get('routeCol.items').find({ id: vector[i]}).value());
+      }
+    const vector5 = answer.users.split(',').map((v) => Number(v.trim()));
+
+      for (let i = 0; i < vector5.length; i++) {
+        vector3.push(db.get('userCol.items').find({id: vector5[i]}).value());
+      }
+    const newChall = new Challenge(Number(answer.id), answer.name, vector2, answer.activity, vector3);
+    
+    challCol.addItem(newChall);
+    db.get('challCol.items').push(newChall).write();
+  });
+  break;
+```
+Consiste en ir creando el objeto en base a las respuestas de usuario por la línea de comandos interactiva para posteriormente añadirlas a la base de datos.
 ## Clase Gestor
 Para la clase gestor también se ha hecho uso de _Inquirer.js_ lo que nos permite hacer uso de la linea de comandos interactiva para poder hacer operaciones de gestion en la base de datos que se indican en el enunciado, que son:
 \
