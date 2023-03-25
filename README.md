@@ -1207,23 +1207,8 @@ db.defaults({userCol}).write();
 db.defaults({groupCol}).write();
 db.defaults({challCol}).write();
 ```
-werhr
-\
-\
 Esto solo se realizará la primera vez para que queden guardadas en el _json_, después eliminaremos las líneas _db.defaults...write()_ para que no se altere nuestra base de datos cada vez que ejecutamos el programa.
-\
-\
-Son cuatro las funciones que implementa este fichero:
-Mostrar elemento (Ruta, Usuario, Grupo o Reto)
-Añadir elemento
-Modificar elemento
-Borrar elemento
-\
-\
-Es este informe no mostraremos todas las combinaciones posibles que se pueden realizar debido a su extensión, sin embargo, si mostraremos el correcto funcionamiento de cada una de ellas.
-\
-\
-El funcionamiento de todas las partes consiste que hacer una constante con las preguntas que posteriormente le pasaremos al inquirer y dentro de este _switches_ anidados para entrar en la parte del código que seleccione el usuario.
+
 ### Mostrar Elemento
 En el guion de la práctica se nos pide poder ordenar los elementos de las colecciones de múltiples formas distintas, para esto se hace uso de los métodos declarados anteriormente en cada una de las colecciones. A continuación veremos un ejemplo de ello:
 ```
