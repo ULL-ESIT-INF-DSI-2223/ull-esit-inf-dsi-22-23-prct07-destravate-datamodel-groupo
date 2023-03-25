@@ -19,18 +19,17 @@ import { Route } from "./route";
 import { Challenge } from "./challenge";
 import { stats, User } from "./users";
 
-
-const challCol = new ChallengeCollection([chall1, chall2, chall3]);
-const routeCol = new RouteCollection([route1, route2, route3, route4, route5, route6, route7, route8, route9, route10]);
-const userCol = new UserCollection([user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16, user17, user18, user19, user20]);
-const groupCol = new GroupCollection([group1, group2, group3, group4, group5]);
-
 const inquirer = require('inquirer');
 const low = require('lowdb');
 
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
+
+const challCol = new ChallengeCollection([chall1, chall2, chall3]);
+const routeCol = new RouteCollection([route1, route2, route3, route4, route5, route6, route7, route8, route9, route10]);
+const userCol = new UserCollection([user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16, user17, user18, user19, user20]);
+const groupCol = new GroupCollection([group1, group2, group3, group4, group5]);
 
 const questionsMenu = [
   {

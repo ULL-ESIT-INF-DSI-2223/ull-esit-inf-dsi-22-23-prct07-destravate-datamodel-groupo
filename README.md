@@ -1151,12 +1151,8 @@ Para comprobar el funcionamiento de las clases anteriormente implementadas se ha
 - 3 retos.
 \
 \
-_Database_:
+### Database:
 ```TypeScript
-
-const sCoords: coords = {x: 28.4894, y: 16.3168};
-const eCoords: coords = {x: 28.4841, y: 16.2337};
-
 export const route1 = new Route(101, "Teide", sCoords, eCoords, 18, 1000, [201, 203, 207, 209], "bicicleta", 9.8);
 export const route2 = new Route(102, "Sentidos", sCoords, eCoords, 7, 250, [201, 202], "bicicleta", 7.2);
 export const route3 = new Route(103, "Lavas", sCoords, eCoords, 8, 600, [204, 206, 207, 208], "corriendo",6.8);
@@ -1167,36 +1163,6 @@ export const route7 = new Route(107, "Bosques", sCoords, eCoords, 12, 400, [217]
 export const route8 = new Route(108, "Bodegas", sCoords, eCoords, 17, 500, [201, 217, 220] ,"bicicleta", 6.2);
 export const route9 = new Route(109, "Molinos", sCoords, eCoords, 14, 400, [218, 219] ,"bicicleta", 7.7);
 export const route10 = new Route(110, "Pueblos", sCoords, eCoords, 2, 200, [213, 220] ,"corriendo", 5.4);
-
-export const stats1: stats = {kmWeek: 76, slopeWeek: 3200, kmMonth: 354, slopeMonth: 12800, kmYear: 3248, slopeYear: 153600};
-export const stats2: stats = {kmWeek: 87, slopeWeek: 4900, kmMonth: 248, slopeMonth: 19600, kmYear: 4676, slopeYear: 235200};
-export const stats3: stats = {kmWeek: 92, slopeWeek: 5100, kmMonth: 378, slopeMonth: 24000, kmYear: 4016, slopeYear: 288000};
-export const stats4: stats = {kmWeek: 63, slopeWeek: 2700, kmMonth: 292, slopeMonth: 10800, kmYear: 4524, slopeYear: 129600};
-export const stats5: stats = {kmWeek: 91, slopeWeek: 5000, kmMonth: 324, slopeMonth: 20000, kmYear: 4068, slopeYear: 240000};
-export const stats6: stats = {kmWeek: 86, slopeWeek: 4700, kmMonth: 384, slopeMonth: 18800, kmYear: 4128, slopeYear: 225600};
-export const stats7: stats = {kmWeek: 69, slopeWeek: 3000, kmMonth: 226, slopeMonth: 12000, kmYear: 3136, slopeYear: 144000};
-export const stats8: stats = {kmWeek: 73, slopeWeek: 3200, kmMonth: 252, slopeMonth: 12800, kmYear: 3004, slopeYear: 153600};
-export const stats9: stats = {kmWeek: 72, slopeWeek: 3100, kmMonth: 328, slopeMonth: 12400, kmYear: 3756, slopeYear: 148800};
-export const stats10: stats = {kmWeek: 65, slopeWeek: 2900, kmMonth: 290, slopeMonth: 11600, kmYear: 3220, slopeYear: 139200};
-export const stats11: stats = {kmWeek: 84, slopeWeek: 3800, kmMonth: 366, slopeMonth: 15200, kmYear: 4375, slopeYear: 182400};
-export const stats12: stats = {kmWeek: 98, slopeWeek: 5400, kmMonth: 352, slopeMonth: 21600, kmYear: 3235, slopeYear: 259200};
-export const stats13: stats = {kmWeek: 74, slopeWeek: 4100, kmMonth: 276, slopeMonth: 16400, kmYear: 3863, slopeYear: 196800};
-export const stats14: stats = {kmWeek: 96, slopeWeek: 5200, kmMonth: 334, slopeMonth: 20800, kmYear: 4216, slopeYear: 249600};
-export const stats15: stats = {kmWeek: 102, slopeWeek: 5800, kmMonth: 408, slopeMonth: 23200, kmYear: 4176, slopeYear: 278400};
-export const stats16: stats = {kmWeek: 75, slopeWeek: 4000, kmMonth: 312, slopeMonth: 16000, kmYear: 3672, slopeYear: 192000};
-export const stats17: stats = {kmWeek: 62, slopeWeek: 3100, kmMonth: 276, slopeMonth: 12400, kmYear: 3871, slopeYear: 148800};
-export const stats18: stats = {kmWeek: 58, slopeWeek: 2600, kmMonth: 272, slopeMonth: 10400, kmYear: 3900, slopeYear: 124800};
-export const stats19: stats = {kmWeek: 93, slopeWeek: 4700, kmMonth: 322, slopeMonth: 18800, kmYear: 4254, slopeYear: 225600};
-export const stats20: stats = {kmWeek: 75, slopeWeek: 3800, kmMonth: 298, slopeMonth: 15200, kmYear: 4183, slopeYear: 182400};
-
-export const groupStats1: stats = {kmWeek: 228, slopeWeek: 9600, kmMonth: 1062, slopeMonth: 38400, kmYear: 9744, slopeYear: 460800};
-export const groupStats2: stats = {kmWeek: 375, slopeWeek: 19000, kmMonth: 1490, slopeMonth: 76000, kmYear: 20915, slopeYear: 912000};
-export const groupStats3: stats = {kmWeek: 232, slopeWeek: 10400, kmMonth: 544, slopeMonth: 52000, kmYear: 15600, slopeYear: 499200};
-export const groupStats4: stats = {kmWeek: 248, slopeWeek: 12400, kmMonth: 1104, slopeMonth: 49600, kmYear: 15484, slopeYear: 595200};
-export const groupStats5: stats = {kmWeek: 207, slopeWeek: 9000, kmMonth: 678, slopeMonth: 36000, kmYear: 9408, slopeYear: 432000};
-
-const routeHistory1: routeHistory = {date: "12/05/2022", idRoute: 101}
-const routeHistory2: routeHistory = {date: "23/07/2022", idRoute: 102}
 
 export const user1 = new User(201, "Ana", "correr", [202, 203], [202], stats1, [101, 102], [1, 3], [routeHistory1, routeHistory2]);
 export const user2 = new User(202, "Juan", "correr", [205, 214, 216], [205, 216], stats2, [107], [2], [routeHistory1, routeHistory2]);
@@ -1247,10 +1213,49 @@ db.defaults({groupCol}).write();
 db.defaults({challCol}).write();
 ```
 Esto solo se realizará la primera vez para que queden guardadas en el _json_, después eliminaremos las líneas _db.defaults...write()_ para que no se altere nuestra base de datos cada vez que ejecutamos el programa.
+\
+\
+Son cuatro las funciones que implementa este fichero:
+* Mostrar elemento (Ruta, Usuario, Grupo o Reto)
+* Añadir elemento
+* Modificar elemento
+* Borrar elemento
+\
+\
+Es este informe no mostraremos todas las combinaciones posibles que se pueden realizar debido a su extensión, sin embargo, si mostraremos el correcto funcionamiento de cada una de ellas.
+### Mostrar Elemento
+Es el guion de la práctica se nos pide poder ordenar los elementos de las colecciones de múltiples formas distintas, para esto se hace uso de los métodos declarados anteriormente en cada una de las colecciones. A continuación veremos un ejemplo de ello:
+```
+? ¿Qué quiere hacer? Mostrar elemento
+? ¿Qué elemento desea elegir? Retos
+? ¿De qué forma desea mostrar los retos? Por cantidad de Kms que se deben realizar
+? ¿De forma ascendente o descendente? Ascendente
+Id: 3
+Nombre: Estrellas
+Rutas: Bodegas, Molinos
+Actividad: bicicleta
+Kms: 31
+Usuarios: Sofía, Carlos, José, Pablo, Miguel
+-------
+Id: 1
+Nombre: Tres Cumbres
+Rutas: Teide, Sentidos, Caldera
+Actividad: bicicleta
+Kms: 33
+Usuarios: Ana, María, Laura
+-------
+Id: 2
+Nombre: Vuelta Tenerife
+Rutas: Guanches, Acantilados, Lavas, Bosques, Pueblos
+Actividad: corriendo
+Kms: 41
+Usuarios: Juan, Luis
+```
+Podemos ver como se muestran los retos ordenado de forma ascendente en cuanto a los Kms que se deben realizar se refiere.
 ## Clase Gestor
 Para la clase gestor también se ha hecho uso de _Inquirer.js_ lo que nos permite hacer uso de la linea de comandos interactiva para poder hacer operaciones de gestion en la base de datos que se indican en el enunciado, que son:
-/
-/
+\
+\
 **Registrarse en el sistema**. Los usuarios que se conectan por primera vez al sistema deberan registrarse en el mismo para crear un usuario nuevo con sus datos, ademas para que una persona pueda volver a conectarse y usar su usuario en el sistema tambien hemos implementado un metodo _log in_, que comprueba que estés registrado y si es así te permite hacer uso de las funciones del sistema con tu usuario.
 ```Typescript
   /**
@@ -1492,4 +1497,4 @@ Github Actions.
 ## Bibliografía
 [Guion de la práctica 7](https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/)\
 [Documentación Inquirer.js](https://www.npmjs.com/package/inquirer#documentation)\
-[Documentación Lowdb](https://www.npmjs.com/package/lowdb)\
+[Documentación Lowdb](https://www.npmjs.com/package/lowdb)
