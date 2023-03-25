@@ -1282,22 +1282,22 @@ Antes de ejecutar el programa solo nos aparece en la base de datos los 3 restos 
 {
   "id": 1,
   "name": "Tres Cumbres",
-  ...
+  //...
 }
 {
   "id": 2,
   "name": "Vuelta Tenerife",
-  ...
+  //...
 }
 {
   "id": 3,
   "name": "Estrellas",
-  ...
+  //...
 }
 {
   "id": 4,
   "name": "Nuevo Reto",
-  ...
+  //...
 }
 ```
 El código que nos permite añadir un reto a la base de datos es el siguiente:
@@ -1346,7 +1346,7 @@ Una vez hecho esto, si le echamos un vistazo a la base de datos, podemos ver com
 {
   "id": 101,
   "name": "Teide",
-  ...
+  //...
 }
 {
   "id": 102,
@@ -1371,9 +1371,9 @@ Una vez hecho esto, si le echamos un vistazo a la base de datos, podemos ver com
 {
   "id": 103,
   "name": "Lavas",
-  ...
+  //...
 }
-...
+//...
 ```
 El código encargado de lo mostrado anteriormente es el siguiente:
 ```TypeScript
@@ -1409,12 +1409,12 @@ Ahora si observamos la base de datos, veremos que la ruta que habíamos creado e
 {
   "id": 101,
   "name": "Teide",
-  ...
+  //...
 }
 {
   "id": 103,
   "name": "Lavas",
-  ...
+  //...
 }
 ...
 ```
@@ -1866,10 +1866,14 @@ All files               |   93.51 |    73.77 |     100 |   92.55 |
 ```
 Se ha incluido por primera vez en los informes de la asignatura la integración continua mediante GitHub Actions, pasando todos los test de forma satisfactoria y consiguiendo el siguiente _badge_:
 [![Test](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/actions/workflows/node.js.yml)
+\
+\
 También se ha hecho la configuración de workflow de GitHub Actions para enviar la información de encubrimiento a Coveralls:
 [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-groupo?branch=main)
 
 ## Bibliografía
 [Guion de la práctica 7](https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/)\
 [Documentación Inquirer.js](https://www.npmjs.com/package/inquirer#documentation)\
-[Documentación Lowdb](https://www.npmjs.com/package/lowdb)
+[Documentación Lowdb](https://www.npmjs.com/package/lowdb)\
+[Documentación GitHub Action](https://docs.github.com/en/actions)\
+[Sonar-Cloud](https://www.sonarsource.com/products/sonarcloud/)
